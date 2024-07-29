@@ -12,16 +12,18 @@ export type User = {
     PinCode: string
 }
 
-export type Customer = {
-    Address: string;
-    City: string;
-    Country: string;
-    DateOfBirth: string;
-    Email: string;
-    FullName: string;
-    Phone: string;
-    PhotoUrl: string;
-    PinCode: string;
-    State: string;
-    uid: string;
+export type Seller = {
+    ShopOwnerName: string,
+    SellerEmail: string,
+    ShopName:string,
+    ShopAddress: string,
+    GSTNO: string,
+    PhotoUrl: string,
+    Phone: string,
+    City: string,
+    State: string,
+    Country: string,
+    PinCode: string,
+    uid?: string,
+    DateOfBirth:string
 }

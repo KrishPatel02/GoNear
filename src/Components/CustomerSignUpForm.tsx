@@ -12,8 +12,8 @@ import { FcGoogle } from "react-icons/fc";
 
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/Firebase/FirebaseConfig";
-import { User } from "@/types"; 
-import PrimaryButton from "@/Components/PrimaryButton";
+import { User } from "@/types";
+import PrimaryButton from "../Components/PrimaryButton";
 
 const CustomerSignUpForm = () => {
     const [email, setEmail] = useState("");

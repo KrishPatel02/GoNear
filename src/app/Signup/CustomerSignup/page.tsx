@@ -1,10 +1,10 @@
-import FirebaseCustomerSignup from '@/Firebase/FirebaseCustomerSignup'
+import CustomerSignUpForm from '@/Components/CustomerSignUpForm'
 import React from 'react'
 
 const page = () => {
     return (
         <div>
-            <FirebaseCustomerSignup />
+            <CustomerSignUpForm />
         </div>
     )
 }
