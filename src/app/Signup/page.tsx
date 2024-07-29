@@ -7,8 +7,8 @@ const page = () => {
             <h1 className="text-4xl font-bold"><span className='text-colorOne'>Wellcome </span>,
                 New User Choose One</h1>
 
-            <Link className='bg-colorFour hover:shadow-xl shadow-colorTwo text-colorOne px-5 py-2 rounded-lg text-xl text-bold' href={'Signup/CustomerSignup'}>SignUp As a Customer</Link>
-            <Link className='bg-colorFour hover:shadow-xl shadow-colorTwo text-colorOne px-5 py-2 rounded-lg text-xl text-bold' href={"/BecomeSeller"}>SignUp As a Seller</Link>
+            <Link className='bg-white  w-72 text-center hover:shadow-xl shadow-colorTwo text-colorOne px-5 py-2 rounded-lg text-xl text-bold' href={'Signup/CustomerSignup'}>SignUp As a Customer</Link>
+            <Link className='bg-white  w-72 text-center hover:shadow-xl shadow-colorTwo text-colorOne px-5 py-2 rounded-lg text-xl text-bold' href={"/BecomeSeller"}>SignUp As a Seller</Link>
         </div>
     )
 }
