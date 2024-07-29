@@ -11,3 +11,19 @@ export type User = {
     uid?: string,
     PinCode: string
 }
+
+export type Seller = {
+    ShopOwnerName: string,
+    SellerEmail: string,
+    ShopName:string,
+    ShopAddress: string,
+    GSTNO: string,
+    PhotoUrl: string,
+    Phone: string,
+    City: string,
+    State: string,
+    Country: string,
+    PinCode: string,
+    uid?: string,
+    DateOfBirth:string
+}

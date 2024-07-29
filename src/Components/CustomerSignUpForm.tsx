@@ -15,7 +15,7 @@ import { auth, db } from "@/Firebase/FirebaseConfig";
 import { User } from "@/types";
 import PrimaryButton from "../Components/PrimaryButton";
 
-const FirebaseCustomerSignup = () => {
+const CustomerSignUpForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState(""); // New state for First Name
@@ -159,4 +159,4 @@ const FirebaseCustomerSignup = () => {
     );
 };
 
-export default FirebaseCustomerSignup;
+export default CustomerSignUpForm;
