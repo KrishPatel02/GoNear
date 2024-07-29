@@ -13,9 +13,9 @@ import { FcGoogle } from "react-icons/fc";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/Firebase/FirebaseConfig";
 import { User } from "@/types";
-import PrimaryButton from "./PrimaryButton";
+import PrimaryButton from "../Components/PrimaryButton";
 
-const CustomerSignUpForm = () => {
+const FirebaseCustomerSignup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState(""); // New state for First Name
@@ -159,4 +159,4 @@ const CustomerSignUpForm = () => {
     );
 };
 
-export default CustomerSignUpForm;
+export default FirebaseCustomerSignup;
