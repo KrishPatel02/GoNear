@@ -11,3 +11,17 @@ export type User = {
     uid?: string,
     PinCode: string
 }
+
+export type Customer = {
+    Address: string;
+    City: string;
+    Country: string;
+    DateOfBirth: string;
+    Email: string;
+    FullName: string;
+    Phone: string;
+    PhotoUrl: string;
+    PinCode: string;
+    State: string;
+    uid: string;
+}
