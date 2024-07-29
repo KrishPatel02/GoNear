@@ -2,11 +2,11 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useCustomerData } from "@/Context/UserDataContext";
+import { useUserData } from "@/Context/UserDataContext";
 
 const LogoutPage = () => {
   const router = useRouter();
-  const { logoutUser } = useCustomerData();
+  const { logoutUser } = useUserData();
 
   useEffect(() => {
     const logout = async () => {
