@@ -1,19 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import {
-    GoogleAuthProvider,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FcGoogle } from "react-icons/fc";
 
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/Firebase/FirebaseConfig";
 import { Customer } from "@/types"; // Make sure to update your types file to include Customer
-import PrimaryButton from "../UI/PrimaryButton";
 import Link from "next/link";
+import PrimaryButton from "@/UI/PrimaryButton";
 
 const CustomerLoginForm = () => {
     const [email, setEmail] = useState("");
@@ -21,11 +17,7 @@ const CustomerLoginForm = () => {
 
     const handleEmailLogin = async () => {
         try {
-            const userCredential = await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
             const docRef = doc(db, "CustomerData", user.uid);
@@ -58,15 +50,26 @@ const CustomerLoginForm = () => {
                 const customerData = docSnap.data() as Customer;
                 localStorage.setItem("User", JSON.stringify(customerData));
                 toast.success("Logged in successfully!");
-                window.location.href = "/CustomerDashboard";
             } else {
-                throw new Error("No such document!");
+                //Document not exist
+                const customerData = {
+                    FullName: userData.displayName || "",
+                    Email: userData.email || "",
+                    Address: "",
+                    PinCode: "",
+                    DateOfBirth: "",
+                    City: "",
+                    State: "",
+                    Country: "",
+                    Phone: "",
+                    PhotoUrl: userData.photoURL || "",
+                    uid: userData.uid,
+                };
+                await setDoc(docRef, customerData);
             }
+            window.location.href = "/CustomerDashboard";
         } catch (error) {
-            console.error(
-                "Error logging in with Google or fetching customer data: ",
-                error
-            );
+            console.error("Error logging in with Google or fetching customer data: ", error);
             toast.error("Error: " + error);
         }
     };

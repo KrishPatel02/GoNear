@@ -1,23 +1,17 @@
 "use client";
-import {
-    Button,
-    TextField,
-    Container,
-    Typography,
-    Box,
-    Input,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { auth, db, storage } from "@/Firebase/FirebaseConfig";
-import { createUserWithEmailAndPassword, deleteUser } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { Seller, User } from "@/types";
-import { useRouter } from "next/navigation";
+import { Button, TextField, Container, Typography, Box, Input } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { auth, db, storage } from '@/Firebase/FirebaseConfig'; // Ensure this import is correct
+import { createUserWithEmailAndPassword, deleteUser } from 'firebase/auth';
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { Seller, User } from '@/types';
+import { useRouter } from 'next/navigation';
 
 const BecomeASellerForm = () => {
+
     const router = useRouter();
     const [OwnerName, setOwnerName] = useState("");
     const [ShopName, setShopName] = useState("");
@@ -31,38 +25,35 @@ const BecomeASellerForm = () => {
     const [Country, setCountry] = useState("");
     const [PinCode, setPinCode] = useState("");
     const [DateOfBirth, setDateOfBirth] = useState("");
-    const [Photo, setPhoto] = useState(null);
+    const [Photo, setPhoto] = useState(null); // State for the photo file
 
     const handlePhotoChange = (e) => {
-        setPhoto(e.target.files[0]);
+        setPhoto(e.target.files[0]); // Get the selected file
     };
 
-    const loggedInUser = localStorage.getItem("User") ?? "{}";
+    // Check the User is logged in or not from localstorage
+    const loggedInUser = localStorage.getItem("User") ?? null;
     useEffect(() => {
         const parsedLoggedInUser: User = JSON.parse(loggedInUser);
 
-        if (parsedLoggedInUser) {
+        if (parsedLoggedInUser != null) {
             console.log("loggedInUser", parsedLoggedInUser);
-
+            // Setting basic details from the logged in user
             setPhone(parsedLoggedInUser.Phone);
             setCity(parsedLoggedInUser.City);
             setCountry(parsedLoggedInUser.Country);
             setOwnerName(parsedLoggedInUser.FullName);
             setPinCode(parsedLoggedInUser.PinCode);
-            setDateOfBirth(parsedLoggedInUser.DateOfBirth);
+            setDateOfBirth(parsedLoggedInUser.DateOfBirth)
         }
-    }, []);
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         let user = null;
         try {
             // Create a new user with email and password
-            const userCredential = await createUserWithEmailAndPassword(
-                auth,
-                Email,
-                Password
-            );
+            const userCredential = await createUserWithEmailAndPassword(auth, Email, Password);
             user = userCredential.user; //Updating the user
 
             // Upload the photo to Firebase Storage
@@ -90,7 +81,7 @@ const BecomeASellerForm = () => {
                 DateOfBirth: DateOfBirth,
             };
 
-            await addDoc(collection(db, "SellerData"), sellerData);
+            await setDoc(doc(db, "SellerData", sellerData.uid), sellerData);
 
             toast.success("You are now a seller!!");
             toast.success("Please Login with new credentials!!");
@@ -108,11 +99,13 @@ const BecomeASellerForm = () => {
             setCountry("");
             setPinCode("");
             setDateOfBirth("");
-            setPhoto(null);
-        } catch (error) {
+            setPhoto(null); // Clear photo
+        } catch (error) { //Check for any error
             console.error("Error creating user or adding to Firestore: ", error);
             toast.error("Error: " + error.message);
 
+            //If there is an error while creating Seller Data
+            //  then Delete user from FireBase Authorization
             if (user) {
                 await deleteUser(user);
             }
@@ -125,18 +118,28 @@ const BecomeASellerForm = () => {
                 component="form"
                 onSubmit={handleSubmit}
                 sx={{
-                    display: "flex",
-                    flexDirection: "column",
+                    display: 'flex',
+                    flexDirection: 'column',
                     gap: 2,
                     mt: 4,
                     p: 3,
                     boxShadow: 3,
-                    borderRadius: 2,
+                    borderRadius: 2
                 }}
             >
                 <Typography variant="h4" component="h1" align="center" gutterBottom>
                     Become a Seller
                 </Typography>
+
+                <TextField
+                    label="Your Name"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    type="name"
+                    value={OwnerName}
+                    onChange={(e) => setOwnerName(e.target.value)}
+                />
 
                 <TextField
                     label="Email"
@@ -242,7 +245,11 @@ const BecomeASellerForm = () => {
                     onChange={(e) => setDateOfBirth(e.target.value)}
                 />
 
-                <Input type="file" onChange={handlePhotoChange} required />
+                <Input
+                    type="file"
+                    onChange={handlePhotoChange}
+                    required
+                />
 
                 <Button variant="contained" type="submit" fullWidth>
                     Become a Seller
