@@ -1,6 +1,9 @@
 "use client";
+import { useUserData } from "@/Context/UserDataContext";
 import tailwindConfig from "../../tailwind.config";
 const Page = () => {
+  const { state } = useUserData()
+  console.log(state)
   return (
     <>
       <div className="h-screen flex items-center justify-center">

@@ -1,11 +1,18 @@
-import React from 'react'
+import { useUserData } from '@/Context/UserDataContext';
+import React from 'react';
 
 const page = () => {
-  return (
-    <div>
-      This is seller Dashboard
-    </div>
-  )
-}
+  // const { state } = useUserData();
 
-export default page
+  // console.log("state from Seller Dashboard", state);
+
+  return (
+    <div className='min-h-screen w-full z-10 flex justify-center items-center'>
+      <h1 className='relative text-4xl font-bold'>
+        This is seller Dashboard
+      </h1>
+    </div>
+  );
+};
+
+export default page;

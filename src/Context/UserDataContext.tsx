@@ -124,23 +124,7 @@ export const UserDataProvider: React.FC<UserDataProviderProps> = ({ children }) 
       let customerData;
       if (customerDoc.exists()) {
         customerData = customerDoc.data() as Customer;
-      } else {
-        customerData = {
-          FullName: customer.displayName || "",
-          Email: customer.email || "",
-          Address: "",
-          PinCode: "",
-          DateOfBirth: "",
-          City: "",
-          State: "",
-          Country: "",
-          Phone: "",
-          PhotoUrl: customer.photoURL || "",
-          uid: customer.uid,
-        };
-        await setDoc(customerDocRef, customerData);
       }
-
       dispatch({ type: 'FETCH_CUSTOMER_SUCCESS', payload: customerData });
       localStorage.setItem("User", JSON.stringify(customerData));
     } catch (error) {

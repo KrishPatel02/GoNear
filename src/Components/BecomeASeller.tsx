@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { auth, db, storage } from '@/Firebase/FirebaseConfig'; // Ensure this import is correct
 import { createUserWithEmailAndPassword, deleteUser } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Seller, User } from '@/types';
 import { useRouter } from 'next/navigation';
@@ -32,11 +32,11 @@ const BecomeASellerForm = () => {
     };
 
     // Check the User is logged in or not from localstorage
-    const loggedInUser = localStorage.getItem("User") ?? "{}";
+    const loggedInUser = localStorage.getItem("User") ?? null;
     useEffect(() => {
         const parsedLoggedInUser: User = JSON.parse(loggedInUser);
 
-        if (parsedLoggedInUser) {
+        if (parsedLoggedInUser != null) {
             console.log("loggedInUser", parsedLoggedInUser);
             // Setting basic details from the logged in user
             setPhone(parsedLoggedInUser.Phone);
@@ -66,7 +66,7 @@ const BecomeASellerForm = () => {
 
             // Create a seller document in Firestore
             const sellerData: Seller = {
-                ShopOwnerName: OwnerName,
+                ShopOwnerName: OwnerName ?? "",
                 SellerEmail: Email,
                 ShopName: ShopName,
                 ShopAddress: ShopAddress,
@@ -81,7 +81,7 @@ const BecomeASellerForm = () => {
                 DateOfBirth: DateOfBirth,
             };
 
-            await addDoc(collection(db, "SellerData"), sellerData);
+            await setDoc(doc(db, "SellerData", sellerData.uid), sellerData);
 
             toast.success("You are now a seller!!");
             toast.success("Please Login with new credentials!!");
@@ -130,6 +130,16 @@ const BecomeASellerForm = () => {
                 <Typography variant="h4" component="h1" align="center" gutterBottom>
                     Become a Seller
                 </Typography>
+
+                <TextField
+                    label="Your Name"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    type="name"
+                    value={OwnerName}
+                    onChange={(e) => setOwnerName(e.target.value)}
+                />
 
                 <TextField
                     label="Email"

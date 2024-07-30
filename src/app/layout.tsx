@@ -27,12 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} overflow-x-hidden scroll-smooth `}>
-        <UserDataProvider>
-          <GlobalLayout>
+        <GlobalLayout>
+          <UserDataProvider>
             <Navbar />
             {children}
-          </GlobalLayout>
-        </UserDataProvider>
+          </UserDataProvider>
+        </GlobalLayout>
       </body>
     </html>
   );

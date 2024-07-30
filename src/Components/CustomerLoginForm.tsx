@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FcGoogle } from "react-icons/fc";
 
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/Firebase/FirebaseConfig";
 import { Customer } from "@/types"; // Make sure to update your types file to include Customer
 import PrimaryButton from "../Components/PrimaryButton";
@@ -50,10 +50,24 @@ const CustomerLoginForm = () => {
                 const customerData = docSnap.data() as Customer;
                 localStorage.setItem("User", JSON.stringify(customerData));
                 toast.success("Logged in successfully!");
-                window.location.href = "/CustomerDashboard";
             } else {
-                throw new Error("No such document!");
+                //Document not exist
+                const customerData = {
+                    FullName: userData.displayName || "",
+                    Email: userData.email || "",
+                    Address: "",
+                    PinCode: "",
+                    DateOfBirth: "",
+                    City: "",
+                    State: "",
+                    Country: "",
+                    Phone: "",
+                    PhotoUrl: userData.photoURL || "",
+                    uid: userData.uid,
+                };
+                await setDoc(docRef, customerData);
             }
+            window.location.href = "/CustomerDashboard";
         } catch (error) {
             console.error("Error logging in with Google or fetching customer data: ", error);
             toast.error("Error: " + error);
