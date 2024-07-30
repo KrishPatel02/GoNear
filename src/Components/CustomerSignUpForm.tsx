@@ -9,13 +9,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FcGoogle } from "react-icons/fc";
 
-
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/Firebase/FirebaseConfig";
 import { User } from "@/types";
-import PrimaryButton from "../Components/PrimaryButton";
+import PrimaryButton from "../UI/PrimaryButton";
+import Link from "next/link";
 
-const FirebaseCustomerSignup = () => {
+const CustomerSignUpForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState(""); // New state for First Name
@@ -46,7 +46,10 @@ const FirebaseCustomerSignup = () => {
                 PhotoUrl: "",
                 uid: user.uid,
             };
-            const docRef = await setDoc(doc(db, "CustomerData", userObject.uid), userObject);
+            const docRef = await setDoc(
+                doc(db, "CustomerData", userObject.uid),
+                userObject
+            );
             console.log("Document written with ID: ", docRef);
 
             localStorage.setItem("User", JSON.stringify(userObject));
@@ -77,7 +80,10 @@ const FirebaseCustomerSignup = () => {
                 PhotoUrl: userData.photoURL || "",
             };
 
-            const docRef = await setDoc(doc(db, "CustomerData", userData.uid), userObject);
+            const docRef = await setDoc(
+                doc(db, "CustomerData", userData.uid),
+                userObject
+            );
             console.log("Document written with ID: ", docRef);
 
             localStorage.setItem("User", JSON.stringify(userObject));
@@ -143,13 +149,13 @@ const FirebaseCustomerSignup = () => {
 
                 <PrimaryButton
                     value="Signup with Email"
-                    className="w-full py-2 mt-4 bg-colorOne text-white"
+                    className="w-full py-2 mt-4"
                     onClickFunc={handleEmailSignup}
                 />
                 <PrimaryButton
                     value="Signup with Google"
                     logo={<FcGoogle className="h-5 w-5 cursor-pointer" />}
-                    className="w-full py-2 bg-colorThree mt-4 "
+                    className="w-full py-2 "
                     onClickFunc={handleGoogleSignup}
                 />
 
@@ -159,4 +165,4 @@ const FirebaseCustomerSignup = () => {
     );
 };
 
-export default FirebaseCustomerSignup;
+export default CustomerSignUpForm;

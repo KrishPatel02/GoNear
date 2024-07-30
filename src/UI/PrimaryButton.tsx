@@ -1,14 +1,15 @@
 import React from "react";
 import tailwindConfig from "../../tailwind.config";
+import { Button } from "@mui/material";
 
 const PrimaryButton = ( props ) => {
     return (
         <>
-            <button
+            <Button
                 variant="contained"
                 sx={{
-                    backgroundColor: tailwindConfig.theme.extend.colors.colorThree,
-                    color: "black",
+                    backgroundColor: tailwindConfig.theme.extend.colors.colorOne,
+                    color: "White",
                     textTransform: "none",
                     "&:hover": {
                         color: "white",
@@ -20,7 +21,7 @@ const PrimaryButton = ( props ) => {
             >
                 {props.logo} {"  "}
                 {props.value}
-            </button>
+            </Button>
         </>
     );
 };

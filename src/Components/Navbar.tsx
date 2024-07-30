@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import PrimaryButton from "./PrimaryButton";
+import PrimaryButton from "../UI/PrimaryButton";
 import { usePathname } from "next/navigation";
 import AllPagesAPI from "../API/AllPagesAPI"
 

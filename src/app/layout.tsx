@@ -4,9 +4,12 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 
-import GlobalLayout from "@/Components/GlobalLayout";
+import GlobalLayout from "@/UI/GlobalLayout";
+
+// import {CustomerDataContext} from "@/Context/CustomerDataContext"
 
 import Navbar from "@/Components/Navbar";
+import { UserDataProvider } from "@/Context/UserDataContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} overflow-x-hidden scroll-smooth `}>
-        <GlobalLayout>
-          <Navbar />
-          {children}
-        </GlobalLayout>
+        <UserDataProvider>
+          <GlobalLayout>
+            <Navbar />
+            {children}
+          </GlobalLayout>
+        </UserDataProvider>
       </body>
     </html>
   );
