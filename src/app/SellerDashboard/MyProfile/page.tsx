@@ -54,7 +54,7 @@ const Page: React.FC = () => {
   return (
     <div className="p-8 mt-24">
       <h1 className="text-4xl font-bold mb-8 flex justify-center">
-        Customer Profile
+        Seller Profile
       </h1>
       {seller ? (
         <div className="p-4 border flex gap-10 w-[40%] mx-auto rounded-md shadow-md mb-4">
@@ -62,7 +62,7 @@ const Page: React.FC = () => {
             {seller.PhotoUrl ? (
               <img
                 src={seller.PhotoUrl}
-                alt={`${seller.ShopOwnerName}'s photo`}
+                alt={`${seller.FullName}'s photo`}
                 className="w-20 h-20 rounded-full"
               />
             ) : (
@@ -74,7 +74,7 @@ const Page: React.FC = () => {
             )}
           </div>
           <div className="">
-            <h2 className="text-xl font-bold">{seller.ShopOwnerName}</h2>
+            <h2 className="text-xl font-bold">{seller.FullName}</h2>
             <p>Email: {seller.SellerEmail}</p>
             <p>ShopName: {seller.ShopName}</p>
             <p>ShopAddress: {seller.ShopAddress}</p>
