@@ -7,8 +7,9 @@ import { auth, db, storage } from '@/Firebase/FirebaseConfig'; // Ensure this im
 import { createUserWithEmailAndPassword, deleteUser } from 'firebase/auth';
 import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { Seller, User } from '@/types';
+import { Seller, Customer } from '@/types';
 import { useRouter } from 'next/navigation';
+import PrimaryButton from '@/UI/PrimaryButton';
 
 const BecomeASellerForm = () => {
 
@@ -32,9 +33,9 @@ const BecomeASellerForm = () => {
     };
 
     // Check the User is logged in or not from localstorage
-    const loggedInUser = localStorage.getItem("User") ?? null;
+    const loggedInUser = localStorage.getItem("User") ?? "{}";
     useEffect(() => {
-        const parsedLoggedInUser: User = JSON.parse(loggedInUser);
+        const parsedLoggedInUser: Customer = JSON.parse(loggedInUser);
 
         if (parsedLoggedInUser != null) {
             console.log("loggedInUser", parsedLoggedInUser);
@@ -66,7 +67,7 @@ const BecomeASellerForm = () => {
 
             // Create a seller document in Firestore
             const sellerData: Seller = {
-                ShopOwnerName: OwnerName,
+                FullName: OwnerName,
                 SellerEmail: Email,
                 ShopName: ShopName,
                 ShopAddress: ShopAddress,
@@ -251,9 +252,9 @@ const BecomeASellerForm = () => {
                     required
                 />
 
-                <Button variant="contained" type="submit" fullWidth>
-                    Become a Seller
-                </Button>
+                <PrimaryButton
+                    value={"Become a Seller"}
+                />
             </Box>
             <ToastContainer />
         </Container>

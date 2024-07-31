@@ -13,7 +13,7 @@ export type Customer = {
 }
 
 export type Seller = {
-    ShopOwnerName: string,
+    FullName: string,
     SellerEmail: string,
     ShopName:string,
     ShopAddress: string,
