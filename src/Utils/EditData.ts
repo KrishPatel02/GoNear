@@ -1,4 +1,4 @@
-import { db } from "@/Firebase/FirebaseConfig";
+import { db } from "@/Firebase/FirebaseConfig"
 import { doc, updateDoc } from "firebase/firestore"
 
 export const UpdateDocument = async(collectionName:string,documentID:string,updatedData:object)=>{
