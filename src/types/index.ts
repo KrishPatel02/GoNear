@@ -27,3 +27,13 @@ export type Seller = {
     uid?: string,
     DateOfBirth:string
 }
+
+export interface Product {
+    id?: string;
+    productName: string;
+    description: string;
+    category: string;
+    price: number;
+    productImage: string;
+    sellerID: string;
+}
