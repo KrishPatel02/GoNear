@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import {
     TextField,
     Button,
@@ -10,19 +11,33 @@ import {
     InputLabel,
     FormControl,
 } from "@mui/material";
-import { useAddProduct } from "@/context/ProductContext/ProductDataContext";
+import { useAddProduct } from "@/Context/ProductDataContext";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "@/firebase/config";
+import { auth } from "@/Firebase/FirebaseConfig"; 
 
 const AddProductForm: React.FC = () => {
     const { state, addProduct, handleInputChange, handleFileChange } = useAddProduct();
     const { productData, loading } = state;
+    const [sellerID, setSellerID] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchSellerID = () => {
+            const user = auth.currentUser;
+            console.log("user from add product form",user);
+            if (user) {
+                setSellerID(user.uid);
+            }
+        };
+
+        fetchSellerID();
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        await addProduct();
+        if (sellerID) {
+            await addProduct(sellerID); // Pass sellerID to the addProduct function
+        }
     };
 
     return (
@@ -81,7 +96,7 @@ const AddProductForm: React.FC = () => {
                 <Grid item xs={12}>
                     <Button variant="contained" component="label">
                         Upload Image
-                        <input type="file" hidden onChange={handleFileChange}  />
+                        <input type="file" hidden onChange={handleFileChange} />
                     </Button>
                 </Grid>
                 <Grid item xs={12}>

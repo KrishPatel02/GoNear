@@ -26,7 +26,7 @@ const initialState: State = {
     category: "",
     price: 0,
     productImage: "",
-    sellerId: "",
+    sellerID: "",
   },
   file: null,
   loading: false,
@@ -51,7 +51,7 @@ interface ContextProps {
     state: State;
     editProduct: (productId: string, updatedData: Partial<Product>, imageFile: File | null) => Promise<void>;
     fetchProducts: () => Promise<void>;
-    addProduct: () => Promise<void>;
+    addProduct: (sellerID: string) => Promise<void>;
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement | { value: unknown; name?: string }>) => void;
     handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
@@ -215,11 +215,11 @@ export const useFetchProducts = (): ContextProps => {
   // Add Product Context
   export const AddProductProvider: React.FC<AddProductProviderProps> = ({ children }) => {
     const [state, dispatch] = useReducer(addProductReducer, initialState);
-    const { state: userState } = useUserData();
-    const { user } = userState;
+    // const { state: userState } = useUserData();
+    // const { user } = userState;
     const router = useRouter();
 
-    const addProduct = async () => {
+    const addProduct = async (sellerID: string) => {
       dispatch({ type: 'ADD_START' });
       try {
         let productImage = state.productData.productImage;
@@ -230,7 +230,7 @@ export const useFetchProducts = (): ContextProps => {
           productImage = await getDownloadURL(storageRef);
         }
 
-        const finalProductData = { ...state.productData, productImage, sellerId: user?.uid };
+        const finalProductData = { ...state.productData, productImage, sellerID };
         await AddDataToFirestore('Products', finalProductData);
 
         dispatch({ type: 'ADD_SUCCESS' });

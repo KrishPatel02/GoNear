@@ -35,5 +35,5 @@ export interface Product {
     category: string;
     price: number;
     productImage: string;
-    sellerId: string;
+    sellerID: string;
 }
