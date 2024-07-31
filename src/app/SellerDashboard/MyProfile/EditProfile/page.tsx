@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth'; // Assuming you are using this to get the current user
-import {  doc, getDoc, updateDoc } from 'firebase/firestore';
-import {  ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { app, db ,storage } from '@/Firebase/FirebaseConfig';
+import { app, db, storage } from '@/Firebase/FirebaseConfig';
 import { Seller } from '@/types';
 
 const Page: React.FC = () => {
@@ -18,7 +18,7 @@ const Page: React.FC = () => {
   useEffect(() => {
     const fetchSellerData = async () => {
       if (user) {
-        console.log("user",user);
+        console.log("user", user);
         try {
           const docRef = doc(db, "SellerData", user.uid);
           const docSnap = await getDoc(docRef);
@@ -88,30 +88,30 @@ const Page: React.FC = () => {
       <form onSubmit={handleSubmit} className="w-full max-w-lg">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ShopOwnerName">
-          Shop Owner Name
+            Shop Owner Name
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="ShopOwnerName"
             name="ShopOwnerName"
             type="text"
-            value={formData.ShopOwnerName || ''}
+            value={formData.FullName || ''}
             onChange={handleChange}
           />
         </div>
 
         <div className="mb-4">
-           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="SellerEmail">
-             Email
-           </label>
-           <input
-             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="SellerEmail"
-             name="SellerEmail"
-             type="SellerEmail"
-             value={formData.SellerEmail || ''}
-             onChange={handleChange}
-           />
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="SellerEmail">
+            Email
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="SellerEmail"
+            name="SellerEmail"
+            type="SellerEmail"
+            value={formData.SellerEmail || ''}
+            onChange={handleChange}
+          />
         </div>
 
         <div className="mb-4">
@@ -127,120 +127,120 @@ const Page: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-        
-         <div className="mb-4">
-           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ShopAddress">
-             Shop Address
-           </label>
-           <input
-             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="ShopAddress"
-             name="ShopAddress"
-             type="text"
-             value={formData.ShopAddress || ''}
-             onChange={handleChange}
-           />
-         </div>
 
-         <div className="mb-4">
-           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="GSTNO">
-             GST Number
-           </label>
-           <input
-             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="GSTNO"
-             name="GSTNO"
-             type="text"
-             value={formData.GSTNO || ''}
-             onChange={handleChange}
-           />
-         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ShopAddress">
+            Shop Address
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="ShopAddress"
+            name="ShopAddress"
+            type="text"
+            value={formData.ShopAddress || ''}
+            onChange={handleChange}
+          />
+        </div>
 
-         <div className="mb-4">
-           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="city">
-             City
-           </label>
-           <input
-             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="city"
-             name="City"
-             type="text"
-             value={formData.City || ''}
-             onChange={handleChange}
-           />
-         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="GSTNO">
+            GST Number
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="GSTNO"
+            name="GSTNO"
+            type="text"
+            value={formData.GSTNO || ''}
+            onChange={handleChange}
+          />
+        </div>
 
-         <div className="mb-4">
-           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="state">
-             State
-           </label>
-           <input
-             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="state"
-             name="State"
-             type="text"
-             value={formData.State || ''}
-             onChange={handleChange}
-           />
-         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="city">
+            City
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="city"
+            name="City"
+            type="text"
+            value={formData.City || ''}
+            onChange={handleChange}
+          />
+        </div>
 
-         <div className="mb-4">
-           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="country">
-             Country
-           </label>
-           <input
-             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="country"
-             name="Country"
-             type="text"
-             value={formData.Country || ''}
-             onChange={handleChange}
-           />
-         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="state">
+            State
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="state"
+            name="State"
+            type="text"
+            value={formData.State || ''}
+            onChange={handleChange}
+          />
+        </div>
 
-         <div className="mb-4">
-           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pinCode">
-             Pin Code
-           </label>
-           <input
-             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="pinCode"
-             name="PinCode"
-             type="text"
-             value={formData.PinCode || ''}
-             onChange={handleChange}
-           />
-         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="country">
+            Country
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="country"
+            name="Country"
+            type="text"
+            value={formData.Country || ''}
+            onChange={handleChange}
+          />
+        </div>
 
-         <div className="mb-4">
-           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Phone">
-             Phone Number
-           </label>
-           <input
-             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="Phone"
-             name="Phone"
-             type="text"
-             value={formData.Phone || ''}
-             onChange={handleChange}
-           />
-         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pinCode">
+            Pin Code
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="pinCode"
+            name="PinCode"
+            type="text"
+            value={formData.PinCode || ''}
+            onChange={handleChange}
+          />
+        </div>
 
-         <div className="mb-4">
-           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="DateOfBirth">
-             Date Of Birth
-           </label>
-           <input
-             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="DateOfBirth"
-             name="DateOfBirth"
-             type="text"
-             value={formData.DateOfBirth || ''}
-             onChange={handleChange}
-           />
-         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Phone">
+            Phone Number
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="Phone"
+            name="Phone"
+            type="text"
+            value={formData.Phone || ''}
+            onChange={handleChange}
+          />
+        </div>
 
-         <div className="mb-4">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="DateOfBirth">
+            Date Of Birth
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="DateOfBirth"
+            name="DateOfBirth"
+            type="text"
+            value={formData.DateOfBirth || ''}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="PhotoUrl">
             Photo
           </label>

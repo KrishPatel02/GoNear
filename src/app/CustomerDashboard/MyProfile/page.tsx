@@ -86,23 +86,21 @@ const Page: React.FC = () => {
 
   const displayedUserData = customer
     ? Object.fromEntries(
-        Object.entries(customer)
+      Object.entries(customer)
 
-          .filter(([key]) => !hiddenKeys.includes(key))
+        .filter(([key]) => !hiddenKeys.includes(key))
 
-          .sort(
-            ([a], [b]) =>
-              customerDataOrder.indexOf(a) - customerDataOrder.indexOf(b)
-          )
-      )
+        .sort(
+          ([a], [b]) =>
+            customerDataOrder.indexOf(a) - customerDataOrder.indexOf(b)
+        )
+    )
     : {};
 
   return (
     <>
-      <div className="grid grid-flow-row-dense grid-cols-5 grid-rows-5 place-items-center p-20 gap-3 bg-white h-screen w-screen ">
-        <CustomerDashboardBox />
-
-        <main className="col-span-4 row-span-4 w-full h-full  ">
+      <div className="grid grid-flow-row-dense grid-cols-5 grid-rows-5 place-items-center gap-3 bg-white h-screen w-screen ">
+        <main className="col-span-4 row-span-4 w-full h-full max-w-[750px]  ">
           {customer ? (
             <>
               <ul className=" border border-gray-300 rounded-lg p-6 shadow-sm">
