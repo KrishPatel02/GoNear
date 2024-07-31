@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 
-import GlobalLayout from "@/UI/GlobalLayout";
+import GlobalLayout from "@/Components/GlobalLayout";
 
 // import {CustomerDataContext} from "@/Context/CustomerDataContext"
 
