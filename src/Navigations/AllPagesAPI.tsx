@@ -122,7 +122,7 @@ export const NavBarHemburgMenuSellerAPI = [
     {
         title: "Setting",
 
-        href: "SellerDashboard/Setting",
+        href: "/SellerDashboard/Setting",
 
         icon: <IoSettingsOutline className={iconClassName} />,
     },

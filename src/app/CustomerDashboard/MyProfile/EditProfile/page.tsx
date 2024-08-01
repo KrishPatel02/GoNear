@@ -19,6 +19,7 @@ import { IoHome } from "react-icons/io5";
 import { HiUser } from "react-icons/hi2";
 import { TiGlobe } from "react-icons/ti";
 import { PiCityBold, PiMapPinAreaBold } from "react-icons/pi";
+import Image from "next/image";
 
 const iconClassName = "h-4 w-4";
 
@@ -246,8 +247,9 @@ const EditProfilePage: React.FC = () => {
 
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3 mb-6 md:mb-0">
-                <label className="block text-gray-700 text-sm font-bold mb-2 ">
+                <label className="flex items-center text-gray-700 text-sm font-bold mb-2 ">
                   Profile Picture
+                  <Image className='rounded-full' src={displayedUserData.PhotoUrl} width={50} height={50} alt='User' />
                 </label>
 
                 <input

@@ -17,5 +17,26 @@ const CustomerDataSequence: string[] = [
 
   "Country",
 ];
+export const SellerDataSequence: string[] = [ //Sequence to show the Data
+"FullName",
+
+"SellerEmail",
+"ShopName",
+"Phone",
+
+"DateOfBirth",
+
+"GSTNO",
+
+"ShopAddress",
+
+"PinCode",
+
+"City",
+
+"State",
+
+"Country",
+];
 
 export default CustomerDataSequence;
