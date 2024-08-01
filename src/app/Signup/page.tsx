@@ -1,16 +1,23 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import React from "react";
+import PrimaryButton from "@/UI/PrimaryButton";
 
 const page = () => {
     return (
         <div className="h-screen flex flex-col items-center justify-center gap-5">
-            <h1 className="text-4xl font-bold"><span className='text-colorOne'>Wellcome </span>,
-                New User Choose One</h1>
+            <h1 className="text-4xl font-bold">
+                <span className="text-colorOne">Welcome </span>, New User Choose One
+            </h1>
 
-            <Link className='bg-white  w-72 text-center hover:shadow-xl shadow-colorTwo text-colorOne px-5 py-2 rounded-lg text-xl text-bold' href={'Signup/CustomerSignup'}>SignUp As a Customer</Link>
-            <Link className='bg-white  w-72 text-center hover:shadow-xl shadow-colorTwo text-colorOne px-5 py-2 rounded-lg text-xl text-bold' href={"/BecomeSeller"}>SignUp As a Seller</Link>
+            <Link href="Signup/CustomerSignup">
+                <PrimaryButton value="SignUp As a Customer" logo={``} />
+            </Link>
+
+            <Link href="/BecomeSeller">
+                <PrimaryButton value="SignUp As a Seller" logo={``} />
+            </Link>
         </div>
-    )
-}
+    );
+};
 
-export default page
+export default page;

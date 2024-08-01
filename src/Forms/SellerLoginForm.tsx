@@ -66,7 +66,7 @@ const SellerLoginForm = () => {
 
                 <PrimaryButton
                     value="Login with Email"
-                    className="w-full py-2 mt-4 bg-colorOne text-white"
+                    className="w-full"
                     onClickFunc={handleEmailLogin}
                 />
 

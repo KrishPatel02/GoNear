@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import PrimaryButton from "@/UI/PrimaryButton";
 
 const page = () => {
     return (
@@ -8,17 +9,11 @@ const page = () => {
                 <span className="text-colorOne">Welcome Back</span>
             </h1>
 
-            <Link
-                className="bg-colorOne hover:shadow-xl text-white px-5 py-2 rounded-lg text-xl text-bold"
-                href={"Login/CustomerLogin"}
-            >
-                Login As a Customer
+            <Link href="Login/CustomerLogin">
+                <PrimaryButton value="Login as a Customer" logo={``} />
             </Link>
-            <Link
-                className="bg-transparent shadow-lg hover:shadow-xl  px-5 py-2 rounded-lg text-xl text-bold"
-                href={"Login/SellerLogin"}
-            >
-                Login As a Seller
+            <Link href="Login/SellerLogin">
+                <PrimaryButton value="Login as a Seller" logo={``} />
             </Link>
         </div>
     );

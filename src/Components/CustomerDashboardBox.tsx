@@ -67,7 +67,7 @@ const page = () => {
                     </h1>
                 </div>
                 <div>
-                    <Avatar src={user?.PhotoUrl}>K</Avatar>
+                    <Avatar src={user?.PhotoUrl} className="z-10">K</Avatar>
                 </div>
             </div>
         </>
