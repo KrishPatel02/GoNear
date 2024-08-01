@@ -1,4 +1,4 @@
-import CustomerLoginForm from '@/Components/CustomerLoginForm'
+import CustomerLoginForm from '@/Forms/CustomerLoginForm'
 import React from 'react'
 
 const page = () => {

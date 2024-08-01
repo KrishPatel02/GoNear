@@ -99,8 +99,8 @@ const CustomerSignUpForm = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen ">
-            <div className="bg-white p-8 rounded shadow-lg w-96">
+        <div className="flex items-center justify-center h-screen ">
+            <div className="flex flex-col w-1/4 bg-white p-8 rounded gap-3 shadow-lg">
                 <h1 className="text-2xl font-bold text-center mb-4">Signup</h1>
 
                 <div className="mb-4">
@@ -149,13 +149,13 @@ const CustomerSignUpForm = () => {
 
                 <PrimaryButton
                     value="Signup with Email"
-                    className="w-full py-2 mt-4"
+                    className="w-full"
                     onClickFunc={handleEmailSignup}
                 />
                 <PrimaryButton
                     value="Signup with Google"
                     logo={<FcGoogle className="h-5 w-5 cursor-pointer" />}
-                    className="w-full py-2 "
+                    className="w-full "
                     onClickFunc={handleGoogleSignup}
                 />
 

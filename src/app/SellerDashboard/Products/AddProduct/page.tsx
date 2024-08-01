@@ -1,4 +1,4 @@
-import AddProductForm from '@/Components/AddProductForm'
+import AddProductForm from '@/Forms/AddProductForm'
 import { AddProductProvider } from '@/Context/ProductDataContext'
 import React from 'react'
 

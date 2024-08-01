@@ -5,7 +5,12 @@ import {
     PiPackageFill,
     PiShoppingCartFill,
 } from "react-icons/pi";
-import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
+import {
+    MdOutlineFavorite,
+    MdOutlineFavoriteBorder,
+    MdAnalytics,
+    MdOutlineAnalytics,
+} from "react-icons/md";
 import { TbUserEdit, TbListDetails, TbShoppingBagPlus } from "react-icons/tb";
 import { FaUserEdit, FaUser } from "react-icons/fa";
 import {
@@ -14,10 +19,6 @@ import {
     IoSettings,
     IoSettingsOutline,
 } from "react-icons/io5";
-import { FiPackage } from "react-icons/fi";
-
-import { MdAnalytics } from "react-icons/md";
-import { MdOutlineAnalytics } from "react-icons/md";
 
 
 const iconClassName = "h-5 w-5 cursor-pointer";

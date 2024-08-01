@@ -37,3 +37,4 @@ export interface Product {
     productImage: string;
     sellerID: string;
 }
+

@@ -1,13 +1,7 @@
 "use client";
 
-import CustomerDashboardBox from "@/Components/CustomerDashboardBox";
-
 const page = () => {
-  return (
-    <>
-      Customer Dashboard
-    </>
-  );
+  return <></>;
 };
 
 export default page;

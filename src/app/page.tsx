@@ -1,5 +1,5 @@
 "use client";
-import tailwindConfig from "../../tailwind.config";
+
 const Page = () => {
   return (
     <>
