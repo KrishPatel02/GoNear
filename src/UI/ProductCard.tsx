@@ -15,7 +15,7 @@ const ProductCard: React.FC<Product> = ({
 }) => {
   return (
     <CardContainer className="inter-var">
-      <CardBody className="bg-colorThree relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-72 h-auto rounded-xl p-4 border">
+      <CardBody className="bg-colorFour relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-72 h-auto rounded-xl p-4 border">
         <CardItem
           translateZ="50"
           className="text-lg font-bold text-colorOne dark:text-white"
@@ -46,14 +46,6 @@ const ProductCard: React.FC<Product> = ({
           />
         </CardItem>
         <div className="flex justify-between items-center mt-4">
-          <CardItem
-            translateZ={20}
-            as={Link}
-            href=""
-            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-          >
-            Buy now →
-          </CardItem>
           <CardItem
             translateZ={20}
             as={Link}

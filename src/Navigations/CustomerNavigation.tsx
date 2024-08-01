@@ -133,7 +133,7 @@ export const SellerNavigation = [
   {
     title: "Setting",
 
-    href: "SellerDashboard/Setting",
+    href: "/SellerDashboard/Setting",
 
     activeIcon: <IoSettingsOutline className={iconClassName} />,
     icon: <IoSettingsOutline className={iconClassName} />,

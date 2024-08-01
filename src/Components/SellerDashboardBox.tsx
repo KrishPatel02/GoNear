@@ -6,7 +6,7 @@ import Link from "next/link";
 import Avatar from "@mui/material/Avatar";
 
 import { usePathname } from "next/navigation";
-import { NavBarHemburgMenuSellerAPI } from "@/Navigations/AllPagesAPI";
+import { SellerNavigation } from "@/Navigations/CustomerNavigation";
 
 const SellerDashboardBox = () => {
     const { state } = useUserData();
@@ -39,7 +39,7 @@ const SellerDashboardBox = () => {
             </div>
             <aside className="row-span-4 col-start-1 shadow-sm">
                 <nav className="">
-                    {NavBarHemburgMenuSellerAPI.map((items) => (
+                    {SellerNavigation.map((items) => (
                         <Link
                             key={items.title}
                             href={items.href}

@@ -5,7 +5,7 @@ import PrimaryButton from "../UI/PrimaryButton";
 import { usePathname } from "next/navigation";
 import { useUserData } from "@/Context/UserDataContext";
 import { Customer, Seller } from "@/types";
-import { FiSearch } from "react-icons/fi";
+
 import CustomerNavigation, { SellerNavigation } from "@/Navigations/CustomerNavigation";
 
 const NavBar = () => {
@@ -55,7 +55,7 @@ const NavBar = () => {
     console.log(state.error);
   }
   return (
-    <nav className=" w-screen p-3 bg-white flex justify-evenly items-center text-center fixed gap-2">
+    <nav className=" w-screen p-4 bg-white flex justify-between items-center text-center fixed gap-2">
       <Link
         onClick={setFalse}
         href="/"
