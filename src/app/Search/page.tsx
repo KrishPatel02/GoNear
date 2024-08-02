@@ -61,10 +61,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { CircularProgress, Typography } from '@mui/material';
-import ProductCard from '@/Components/ProductCard';
 import { useFetchProducts } from '@/Context/ProductDataContext';
 import { Product } from '@/types';
 import { useSearchParams } from 'next/navigation';
+import ProductCard from '@/UI/ProductCard';
 
 const SearchPage = () => {
   const searchParams = useSearchParams();
@@ -106,12 +106,12 @@ const SearchPage = () => {
   }
 
   return (
-    <div className="bg-colorFour h-full w-full flex flex-col items-center">
-    <div className="flex bg-colorTwo overflow-x-scroll px-10 gap-5 justify-between items-center">
+    <div className="bg-colorFour pt-52 h-full w-full flex flex-col">
+    <div className="flex bg-colorTwo overflow-x-scroll px-10 gap-5 h-full w-full items-center">
       {filteredProducts.length > 0 ? (
         filteredProducts.map(product => (
           <React.Fragment key={product.id}>
-            <ProductCard {...product} Page="search" />
+            <ProductCard {...product} Page="home" />
           </React.Fragment>
         ))
       ) : (

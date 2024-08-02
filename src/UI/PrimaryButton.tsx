@@ -18,6 +18,7 @@ const PrimaryButton = ( props ) => {
                 }}
                 className={`${props.className} text-gray-700 rounded-md transition-colors duration-500 shadow gap-2 font-medium`}
                 onClick={props.onClickFunc}
+                type={props.type}
             >
                 {props.logo} {"  "}
                 {props.value}

@@ -22,12 +22,6 @@ const page = () => {
     // Determine if the user is a seller
     const user = seller || customer;
 
-    if (user?.isSeller) {
-        window.location.href = "/SellerDashboard/MyProfile";
-    }
-
-   
-
     const cbLinksClassName =
         "flex items-center px-4 py-2 gap-2 transition-colors duration-200 border-b-2 border-slate-200";
 
@@ -39,7 +33,7 @@ const page = () => {
         <>
             <div className="row-span-1 row-start-1">
                 <h2 className="font-medium text-gray-900">
-                    {user?.isSeller == true ? "Sellers Dashboard" : "Customer Dashboard"}
+                    Customer Dashboard
                 </h2>
             </div>
             <aside className="row-span-4 col-start-1 shadow-sm">
@@ -49,8 +43,8 @@ const page = () => {
                             key={items.title}
                             href={items.href}
                             className={`${cbLinksClassName} ${pathname === `${items.href}`
-                                    ? `${activePathClassNameCB}`
-                                    : ` ${unActivePathClassNameCB}`
+                                ? `${activePathClassNameCB}`
+                                : ` ${unActivePathClassNameCB}`
                                 }`}
                         >
                             {pathname === items.href ? items.activeIcon : items.icon}
@@ -67,7 +61,7 @@ const page = () => {
                     </h1>
                 </div>
                 <div>
-                    <Avatar src={user?.PhotoUrl}>K</Avatar>
+                    <Avatar src={user?.PhotoUrl} className="z-10">K</Avatar>
                 </div>
             </div>
         </>

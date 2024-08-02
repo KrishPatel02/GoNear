@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
-
 import { Inter } from "next/font/google";
-
 import "./globals.css";
-
 import GlobalLayout from "@/Components/GlobalLayout";
-
-// import {CustomerDataContext} from "@/Context/CustomerDataContext"
-
 import Navbar from "@/Components/Navbar";
 import { UserDataProvider } from "@/Context/UserDataContext";
 import { FetchProductsProvider } from "@/Context/ProductDataContext";

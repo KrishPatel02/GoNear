@@ -1,6 +1,6 @@
 "use client";
 import { Product } from '@/types/index';
-import EditProductForm from '@/Components/EditProductForm';
+import EditProductForm from '@/Forms/EditProductForm';
 import { db } from '@/Firebase/FirebaseConfig';
 import { Typography } from '@mui/material';
 import { doc, getDoc } from 'firebase/firestore';

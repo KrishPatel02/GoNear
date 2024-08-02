@@ -53,7 +53,7 @@ const ProductDetails: React.FC = () => {
   }
 
   return (
-    <div className='mt-20 mx-auto w-fit'>
+    <div className='py-5 mx-auto w-fit'>
       <h1 className='text-2xl font-bold mb-4'>{product.productName}</h1>
       {product.productImage && (
         <img src={product.productImage} alt={product.productName} className='w-96 h-96 mb-4' />
