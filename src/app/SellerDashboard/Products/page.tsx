@@ -42,7 +42,7 @@ const ProductPage = () => {
         <h2 className="text-2xl font-semibold mb-4 text-gray-800">My Products</h2>
         <div className="flex flex-wrap justify-between items-center">
           {userProducts?.map(product => (
-            <ProductCard key={product.id} {...product} />
+            <ProductCard key={product.id} {...product} Page="product" />
           ))}
         </div>
       </main>

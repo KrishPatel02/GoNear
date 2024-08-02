@@ -33,7 +33,7 @@ const BecomeASellerForm = () => {
     };
 
     // Check the User is logged in or not from localstorage
-    const loggedInUser = localStorage.getItem("User") ?? "{}";
+    const loggedInUser = localStorage.getItem("User") ?? null;
     useEffect(() => {
         const parsedLoggedInUser: Customer = JSON.parse(loggedInUser);
 
@@ -87,7 +87,9 @@ const BecomeASellerForm = () => {
             toast.success("You are now a seller!!");
             toast.success("Please Login with new credentials!!");
 
-            router.push("/Logout");
+            setTimeout(() => {
+                router.push("/Logout");
+            }, 1000);
 
             // Clear form fields
             setShopName("");
@@ -117,7 +119,6 @@ const BecomeASellerForm = () => {
         <Container maxWidth="sm">
             <Box
                 component="form"
-                onSubmit={handleSubmit}
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -253,6 +254,7 @@ const BecomeASellerForm = () => {
                 />
 
                 <PrimaryButton
+                    onClickFunc={handleSubmit}
                     value={"Become a Seller"}
                 />
             </Box>

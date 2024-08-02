@@ -10,6 +10,7 @@ import GlobalLayout from "@/Components/GlobalLayout";
 
 import Navbar from "@/Components/Navbar";
 import { UserDataProvider } from "@/Context/UserDataContext";
+import { FetchProductsProvider } from "@/Context/ProductDataContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,12 +28,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} overflow-x-hidden scroll-smooth `}>
+      <FetchProductsProvider>
+
           <UserDataProvider>
             <GlobalLayout>
               <Navbar />
               {children}
             </GlobalLayout>
           </UserDataProvider>
+      </FetchProductsProvider>
       </body>
     </html>
   );

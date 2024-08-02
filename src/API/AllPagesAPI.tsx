@@ -83,14 +83,14 @@ export const NavBarHemburgMenuSellerAPI = [
     {
         title: "Profile Details",
 
-        href: "SellerDashboard/MyProfile",
+        href: "/SellerDashboard/MyProfile",
 
         icon: <FaUser className={iconClassName} />,
     },
     {
         title: "Edit Profile",
 
-        href: "SellerDashboard/MyProfile/EditProfile",
+        href: "/SellerDashboard/MyProfile/EditProfile",
 
         icon: <FaUserEdit className={iconClassName} />,
     },
@@ -121,7 +121,7 @@ export const NavBarHemburgMenuSellerAPI = [
     {
         title: "Setting",
 
-        href: "SellerDashboard/Setting",
+        href: "/SellerDashboard/Setting",
 
         icon: <IoSettingsOutline className={iconClassName} />,
     },
