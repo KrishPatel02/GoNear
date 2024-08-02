@@ -1,12 +1,12 @@
-import BecomeASellerForm from '@/Components/BecomeASeller'
-import React from 'react'
+import React from "react";
+import BecomeASellerStepperForm from "@/Forms/BecomeASellerStepperForm";
 
 const page = () => {
   return (
     <div>
-      <BecomeASellerForm />
+      <BecomeASellerStepperForm />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
