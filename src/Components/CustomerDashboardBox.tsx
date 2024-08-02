@@ -23,7 +23,7 @@ const page = () => {
     const user = seller || customer;
 
     const cbLinksClassName =
-        "flex items-center px-4 py-2 gap-2 transition-colors duration-200 border-b-2 border-slate-200";
+        "flex items-center px-4 py-2 gap-2 transition-colors duration-200 border-b border-slate-200";
 
     const unActivePathClassNameCB =
         "text-gray-600 hover:text-black hover:font-medium";
@@ -31,20 +31,18 @@ const page = () => {
         "text-colorOne font-medium bg-colorFour rounded";
     return (
         <>
-            <div className="row-span-1 row-start-1">
-                <h2 className="font-medium text-gray-900">
-                    Customer Dashboard
-                </h2>
+            <div className="row-span-1 row-start-1 h-full flex justify-center items-end pb-2 w-full  ">
+                <h2 className="font-medium text-gray-900  ">Customer Dashboard</h2>
             </div>
-            <aside className="row-span-4 col-start-1 shadow-sm">
-                <nav className="">
+            <aside className="row-span-4 col-start-1 w-full h-full ">
+                <nav className="p-8">
                     {CustomerNavigation.map((items) => (
-                        <Link
+                        <Link 
                             key={items.title}
                             href={items.href}
                             className={`${cbLinksClassName} ${pathname === `${items.href}`
-                                ? `${activePathClassNameCB}`
-                                : ` ${unActivePathClassNameCB}`
+                                    ? `${activePathClassNameCB}`
+                                    : ` ${unActivePathClassNameCB}`
                                 }`}
                         >
                             {pathname === items.href ? items.activeIcon : items.icon}
@@ -53,7 +51,7 @@ const page = () => {
                     ))}
                 </nav>
             </aside>
-            <div className="col-span-4 row-start-1 w-full border-b-2 border-slate-200  flex justify-between pb-2 pr-10 pl-10 items-end">
+            <div className="col-span-4 row-start-1 w-full h-full  flex justify-between pb-2 pr-10 pl-10 items-end">
                 <div>
                     <h1 className="text-xl text-gray-900">
                         Welcome Back,{"  "}
@@ -61,7 +59,9 @@ const page = () => {
                     </h1>
                 </div>
                 <div>
-                    <Avatar src={user?.PhotoUrl} className="z-10">K</Avatar>
+                    <Avatar src={user?.PhotoUrl} className="z-10">
+                        K
+                    </Avatar>
                 </div>
             </div>
         </>
