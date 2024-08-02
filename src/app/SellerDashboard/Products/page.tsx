@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { CircularProgress, Typography } from '@mui/material';
-import ProductCard from '@/Components/ProductCard';
+import ProductCard from '@/UI/ProductCard';
 import { auth } from "@/Firebase/FirebaseConfig"; 
 import { FetchProductsProvider, useFetchProducts } from '@/Context/ProductDataContext';
 
