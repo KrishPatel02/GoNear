@@ -5,7 +5,7 @@ import PrimaryButton from "../UI/PrimaryButton";
 import { usePathname } from "next/navigation";
 import { useUserData } from "@/Context/UserDataContext";
 import { Customer, Seller } from "@/types";
-
+import { FiSearch } from "react-icons/fi";
 import CustomerNavigation, { SellerNavigation } from "@/Navigations/CustomerNavigation";
 
 const NavBar = () => {
@@ -44,10 +44,10 @@ const NavBar = () => {
   const navBarLinksClassName =
     "flex items-center px-4 py-2 gap-2 transition-colors duration-200 ";
 
+  const activePathClassNameNavBar = "text-colorOne font-medium  ";
   const activePathClassNameHemBurg =
-    " font-medium text-white bg-colorOne rounded-lg ";
-  const unActivePathClassNameHemBurg = " hover:text-colorOne hover:font-medium";
-  const activePathClassNameNavBar = "text-colorOne font-medium";
+    " font-medium text-colorOne bg-colorFour border-l-2 border-colorOne";
+  const unActivePathClassNameHemBurg = "text-gray-600 hover:text-black hover:font-medium";
   if (state.loading) {
     return <>Loading...</>;
   }
@@ -55,7 +55,7 @@ const NavBar = () => {
     console.log(state.error);
   }
   return (
-    <nav className=" w-screen p-4 bg-white flex justify-between items-center text-center fixed gap-2">
+    <nav className=" w-screen p-3 bg-white flex justify-evenly items-center text-center border-b  fixed gap-2 z-50">
       <Link
         onClick={setFalse}
         href="/"
@@ -64,6 +64,18 @@ const NavBar = () => {
         <span className="text-black">Go</span>
         Near
       </Link>
+      <div className="relative w-1/2 flex  rounded bg-colorFour focus:border-gray-500 border-gray-300 ">
+
+        <input
+          type="text"
+          placeholder="Search for products"
+          onClick={setFalse}
+          className="w-full py-2 px-4 bg-colorFour focus:outline-none rounded-lg "
+        />
+        <button className=" w-1/12 flex items-center justify-center rounded-lg focus:outline-none">
+          <FiSearch className="h-5 w-5" />
+        </button>
+      </div>
       <div className="categories flex items-center justify-center gap-7 w-1/10">
         {!state.seller && (
           <Link
@@ -91,7 +103,7 @@ const NavBar = () => {
             />
 
             {menuOpen && (
-              <div className="absolute top-10 right-0 mt-2 w-60 p-2 bg-white rounded-md shadow-xl z-100">
+              <div className="absolute top-10 right-0 mt-2 w-60 bg-white rounded shadow-md  border z-100">
                 {state.customer &&
                   CustomerNavigation.map((item) => {
                     return (
@@ -104,8 +116,7 @@ const NavBar = () => {
                           }`}
                         key={item.href}
                       >
-                        {item.icon}
-
+                        {pathname === item.href ? item.activeIcon : item.icon}
                         {item.title}
                       </Link>
                     );

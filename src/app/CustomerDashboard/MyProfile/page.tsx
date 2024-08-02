@@ -81,10 +81,10 @@ const Page: React.FC = () => {
 
   return (
     <>
-      <main className="col-span-4 row-span-4 w-full h-full  ">
+      <main className="col-span-4 row-span-4 w-full h-full   ">
         {customer ? (
           <>
-            <ul className=" border border-gray-300 rounded-lg p-6 shadow-sm">
+            <ul className=" border border-gray-300 rounded-lg p-6 shadow-sm bg-white">
               {Object.entries(displayedUserData).map(([key, value]) => (
                 <li
                   key={key}
