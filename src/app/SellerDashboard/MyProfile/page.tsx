@@ -14,7 +14,7 @@ const Page: React.FC = () => {
   console.log("Seller data fetched:", state);
   const seller = state.seller
   if (state.loading) {
-    return <p>Loading...</p>;
+    return <p>Loading...</p>; 
   }
 
   if (state.error) {

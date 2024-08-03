@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const page = () => {
-  return (
-    <div className='h-full relative flex items-center justify-center'>
-      This is seller Dashboard
-    </div>
-  )
-}
+  return <></>;
+};
 
-export default page
+export default page;
