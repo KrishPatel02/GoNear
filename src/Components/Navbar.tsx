@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { useUserData } from "@/Context/UserDataContext";
 import { Customer, Seller } from "@/types";
 import { FiSearch } from "react-icons/fi";
-import CustomerNavigation, { SellerNavigation } from "@/Navigations/CustomerNavigation";
+import CustomerNavigation from "@/Navigations/CustomerNavigation";
+import SellerNavigation from "@/Navigations/SellerNavigation";
 
 const NavBar = () => {
   const pathname = usePathname();
@@ -47,7 +48,8 @@ const NavBar = () => {
   const activePathClassNameNavBar = "text-colorOne font-medium  ";
   const activePathClassNameHemBurg =
     " font-medium text-colorOne bg-colorFour border-l-2 border-colorOne";
-  const unActivePathClassNameHemBurg = "text-gray-600 hover:text-black hover:font-medium";
+  const unActivePathClassNameHemBurg =
+    "text-gray-600 hover:text-black hover:font-medium";
   if (state.loading) {
     return <>Loading...</>;
   }
@@ -65,7 +67,6 @@ const NavBar = () => {
         Near
       </Link>
       <div className="relative w-1/2 flex  rounded bg-colorFour focus:border-gray-500 border-gray-300 ">
-
         <input
           type="text"
           placeholder="Search for products"
@@ -82,8 +83,8 @@ const NavBar = () => {
             href="/BecomeSeller"
             onClick={setFalse}
             className={`${navBarLinksClassName} ${pathname === "/BecomeSeller"
-              ? `${activePathClassNameNavBar}`
-              : ` ${unActivePathClassNameHemBurg}`
+                ? `${activePathClassNameNavBar}`
+                : ` ${unActivePathClassNameHemBurg}`
               }`}
           >
             Become a Seller
@@ -111,8 +112,8 @@ const NavBar = () => {
                         onClick={handleMenuToggle}
                         href={item.href}
                         className={` ${navBarLinksClassName}   ${pathname === item.href
-                          ? `${activePathClassNameHemBurg}`
-                          : ` ${unActivePathClassNameHemBurg}`
+                            ? `${activePathClassNameHemBurg}`
+                            : ` ${unActivePathClassNameHemBurg}`
                           }`}
                         key={item.href}
                       >
@@ -129,12 +130,12 @@ const NavBar = () => {
                         onClick={handleMenuToggle}
                         href={item.href}
                         className={` ${navBarLinksClassName}   ${pathname === item.href
-                          ? `${activePathClassNameHemBurg}`
-                          : ` ${unActivePathClassNameHemBurg}`
+                            ? `${activePathClassNameHemBurg}`
+                            : ` ${unActivePathClassNameHemBurg}`
                           }`}
                         key={item.href}
                       >
-                        {item.icon}
+                        {pathname === item.href ? item.activeIcon : item.icon}
 
                         {item.title}
                       </Link>
