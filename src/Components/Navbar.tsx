@@ -9,8 +9,10 @@ import { CircularProgress, Typography, TextField, Button } from '@mui/material';
 import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from '@headlessui/react';
 import { Product } from '@/types';
 import { useRouter } from 'next/navigation';
+import { FiSearch } from "react-icons/fi";
+import CustomerNavigation from "@/Navigations/CustomerNavigation";
+import SellerNavigation from "@/Navigations/SellerNavigation";
 
-import CustomerNavigation, { SellerNavigation } from "@/Navigations/CustomerNavigation";
 import { useFetchProducts } from "@/Context/ProductDataContext";
 
 const NavBar = () => {
@@ -103,10 +105,11 @@ const NavBar = () => {
   const navBarLinksClassName =
     "flex items-center px-4 py-2 gap-2 transition-colors duration-200 ";
 
+  const activePathClassNameNavBar = "text-colorOne font-medium  ";
   const activePathClassNameHemBurg =
-    " font-medium text-white bg-colorOne rounded-lg ";
-  const unActivePathClassNameHemBurg = " hover:text-colorOne hover:font-medium";
-  const activePathClassNameNavBar = "text-colorOne font-medium";
+    " font-medium text-colorOne bg-colorFour border-l-2 border-colorOne";
+  const unActivePathClassNameHemBurg =
+    "text-gray-600 hover:text-black hover:font-medium";
   if (userState.loading) {
     return <>Loading...</>;
   }
@@ -114,7 +117,7 @@ const NavBar = () => {
     console.log(userState.error);
   }
   return (
-    <nav className=" w-screen p-4  flex justify-between items-center text-center fixed gap-2">
+    <nav className=" w-screen p-3 bg-white flex justify-evenly items-center text-center border-b  fixed gap-2 z-50">
       <Link
         onClick={setFalse}
         href="/"
@@ -158,8 +161,8 @@ const NavBar = () => {
             href="/BecomeSeller"
             onClick={setFalse}
             className={`${navBarLinksClassName} ${pathname === "/BecomeSeller"
-              ? `${activePathClassNameNavBar}`
-              : ` ${unActivePathClassNameHemBurg}`
+                ? `${activePathClassNameNavBar}`
+                : ` ${unActivePathClassNameHemBurg}`
               }`}
           >
             Become a Seller
@@ -179,7 +182,7 @@ const NavBar = () => {
             />
 
             {menuOpen && (
-              <div className="absolute top-10 right-0 mt-2 w-60 p-2 bg-white rounded-md shadow-xl z-100">
+              <div className="absolute top-10 right-0 mt-2 w-60 bg-white rounded shadow-md  border z-100">
                 {userState.customer &&
                   CustomerNavigation.map((item) => {
                     return (
@@ -187,13 +190,12 @@ const NavBar = () => {
                         onClick={handleMenuToggle}
                         href={item.href}
                         className={` ${navBarLinksClassName}   ${pathname === item.href
-                          ? `${activePathClassNameHemBurg}`
-                          : ` ${unActivePathClassNameHemBurg}`
+                            ? `${activePathClassNameHemBurg}`
+                            : ` ${unActivePathClassNameHemBurg}`
                           }`}
                         key={item.href}
                       >
-                        {item.icon}
-
+                        {pathname === item.href ? item.activeIcon : item.icon}
                         {item.title}
                       </Link>
                     );
@@ -206,12 +208,12 @@ const NavBar = () => {
                         onClick={handleMenuToggle}
                         href={item.href}
                         className={` ${navBarLinksClassName}   ${pathname === item.href
-                          ? `${activePathClassNameHemBurg}`
-                          : ` ${unActivePathClassNameHemBurg}`
+                            ? `${activePathClassNameHemBurg}`
+                            : ` ${unActivePathClassNameHemBurg}`
                           }`}
                         key={item.href}
                       >
-                        {item.icon}
+                        {pathname === item.href ? item.activeIcon : item.icon}
 
                         {item.title}
                       </Link>
