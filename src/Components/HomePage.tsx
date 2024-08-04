@@ -17,6 +17,7 @@ const HomePage = () => {
   }
 
   if (error) {
+    console.log(error)
     return <Typography color="error">{error}</Typography>;
   }
 

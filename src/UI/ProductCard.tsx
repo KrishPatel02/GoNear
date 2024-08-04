@@ -6,6 +6,7 @@ import { CardBody, CardContainer, CardItem } from '@/UI/3DCard';
 
 interface ProductCardProps extends Product {
   Page: 'home' | 'product';
+  quantity?: number;
 }
 
 
@@ -17,6 +18,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   id,
   productImage,
   Page,
+  quantity
 }) => {
   return (
     <CardContainer className="inter-var">
@@ -32,17 +34,26 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <CardItem
             as="p"
             translateZ="60"
-            className="text-neutral-500 text-sm mt-2 "
+            className="text-neutral-500 text-sm mt-2"
           >
             Category: {category}
           </CardItem>
           <CardItem
             as="p"
             translateZ="60"
-            className="text-neutral-500 underine text-sm mt-2 "
+            className="text-neutral-500 underline text-sm mt-2"
           >
             Price: ${price}
           </CardItem>
+          {quantity !== undefined && (
+            <CardItem
+              as="p"
+              translateZ="60"
+              className="text-neutral-500 text-sm mt-2"
+            >
+              Quantity: {quantity}
+            </CardItem>
+          )}
         </>
       )}
       <CardItem translateZ="100" className="w-full mt-4">
@@ -50,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           src={productImage}
           height="500"
           width="500"
-          className="h-40 w-full object-contain rounded-xl "
+          className="h-40 w-full object-contain rounded-xl"
           alt="thumbnail"
         />
       </CardItem>
@@ -59,8 +70,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <CardItem
             translateZ={20}
             as={Link}
-            href={`/SellerDashboard/Products/${id}`}
-            className="mx-auto py-2 px-20 rounded-xl bg-colorOne text-white w-full text-center text-xs font-normal "
+            href={`/Products/${id}`}
+            className="mx-auto py-2 px-20 rounded-xl bg-colorOne text-white w-full text-center text-xs font-normal"
           >
             View more →
           </CardItem>
@@ -70,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               translateZ={20}
               as={Link}
               href=""
-              className=" py-2 rounded-xl text-xs w-full font-normal text-center mx-5 bg-colorOne text-white"
+              className="py-2 rounded-xl text-xs w-full font-normal text-center mx-5 bg-colorOne text-white"
             >
               Buy now →
             </CardItem>
@@ -78,7 +89,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               translateZ={20}
               as={Link}
               href={`/SellerDashboard/Products/Edit/${id}`}
-              className=" py-2 rounded-xl bg-colorOne text-white w-full mx-1 text-center text-xs font-bold"
+              className="py-2 rounded-xl bg-colorOne text-white w-full mx-1 text-center text-xs font-bold"
             >
               Edit
             </CardItem>

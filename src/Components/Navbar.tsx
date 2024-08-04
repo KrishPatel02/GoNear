@@ -31,6 +31,7 @@ const NavBar = () => {
   const router = useRouter();
 
   useEffect(() => {
+    console.log(userState)
     if (userState.customer) {
       setLoggedInUser(userState.customer);
     } else if (userState.seller) {
