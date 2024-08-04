@@ -2,7 +2,7 @@ import React from 'react';
 import { Product } from '@/types/index';
 import Image from 'next/image';
 import Link from "next/link";
-import { CardBody, CardContainer, CardItem } from '@/UI/3DCard';
+import { CardBody, CardContainer, CardItem } from './3DCard';
 
 interface ProductCardProps extends Product {
   Page: 'home' | 'product';
@@ -34,26 +34,26 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <CardItem
             as="p"
             translateZ="60"
-            className="text-neutral-500 text-sm mt-2"
+            className="text-neutral-500 text-sm mt-2 "
           >
             Category: {category}
           </CardItem>
           <CardItem
             as="p"
             translateZ="60"
-            className="text-neutral-500 underline text-sm mt-2"
+            className="text-neutral-500 underine text-sm mt-2"
           >
             Price: ${price}
           </CardItem>
           {quantity !== undefined && (
-            <CardItem
-              as="p"
-              translateZ="60"
-              className="text-neutral-500 text-sm mt-2"
-            >
-              Quantity: {quantity}
-            </CardItem>
-          )}
+              <CardItem
+                as="p"
+                translateZ="60"
+                className="text-neutral-500 text-sm mt-2"
+              >
+                Quantity: {quantity}
+              </CardItem>
+            )}
         </>
       )}
       <CardItem translateZ="100" className="w-full mt-4">
@@ -65,15 +65,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
           alt="thumbnail"
         />
       </CardItem>
-      <div className="flex justify-evenly gap-5 items-center mt-4">
+      <div className="flex justify-between items-center mt-4">
         {Page === 'home' ? (
           <CardItem
             translateZ={20}
             as={Link}
             href={`/Products/${id}`}
-            className="mx-auto py-2 px-20 rounded-xl bg-colorOne text-white w-full text-center text-xs font-normal"
+            className="mx-auto py-2 px-20 rounded-xl bg-colorOne text-white w-full text-center text-xs font-normal "
           >
-            View more →
+            View More →
           </CardItem>
         ) : (
           <>
@@ -81,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               translateZ={20}
               as={Link}
               href=""
-              className="py-2 rounded-xl text-xs w-full font-normal text-center mx-5 bg-colorOne text-white"
+              className="py-2 rounded-xl text-xs w-full font-normal text-center mx-5 bg-colorOne text-white "
             >
               Buy now →
             </CardItem>
