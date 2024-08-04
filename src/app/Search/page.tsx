@@ -71,7 +71,7 @@ const SearchPage = () => {
   const { state } = useFetchProducts();
   const { products, loading, error } = state;
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
- 
+
   // useEffect(() => {
   //   console.log("Products:", products); 
   // }, [products]);
@@ -107,18 +107,18 @@ const SearchPage = () => {
 
   return (
     <div className="bg-colorFour pt-52 h-full w-full flex flex-col">
-    <div className="flex bg-colorTwo overflow-x-scroll px-10 gap-5 h-full w-full items-center">
-      {filteredProducts.length > 0 ? (
-        filteredProducts.map(product => (
-          <React.Fragment key={product.id}>
-            <ProductCard {...product} Page="home" />
-          </React.Fragment>
-        ))
-      ) : (
-        <Typography>No products found</Typography>
-      )}
+      <div className="flex bg-colorTwo overflow-x-scroll px-10 gap-5 h-full w-full items-center">
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map(product => (
+            <React.Fragment key={product.id}>
+              <ProductCard {...product} Page="home" />
+            </React.Fragment>
+          ))
+        ) : (
+          <Typography>No products found</Typography>
+        )}
+      </div>
     </div>
-  </div>
   );
 };
 
