@@ -11,12 +11,14 @@ import PrimaryIconButton from "@/UI/PrimaryIconButton";
 import { FaEdit } from "react-icons/fa";
 import { Typography } from "@mui/material";
 
-const ProductCard: React.FC<Product> = ({
+
+const ProductCard: React.FC<ProductCardProps> = ({
   productName,
   description,
   category,
   price,
   productImage,
+  Page,
 }) => {
   const pathname = usePathname();
 
@@ -84,6 +86,7 @@ const ProductCard: React.FC<Product> = ({
         ) : null}
       </CardContent>
     </Card>
+
   );
 };
 

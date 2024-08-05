@@ -7,3 +7,22 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* Hide scrollbar for WebKit browsers */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0; /* or height: 0; for horizontal scrollbar */
+}
+
+.hide-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent; /* Optional: To make the thumb invisible */
+}
+
+/* Hide scrollbar for Firefox */
+.hide-scrollbar {
+  scrollbar-width: none; /* Hides scrollbar for Firefox */
+}
+
+/* Hide scrollbar for Edge and Internet Explorer */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* Hides scrollbar for Edge and IE */
+}

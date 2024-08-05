@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer, ReactNode, useEffect } from 'react';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { UpdateDocument } from '@/Utils/EditData';
 import { toast } from 'react-toastify';
@@ -155,7 +155,7 @@ export const useFetchProducts = (): ContextProps => {
   export const FetchProductsProvider: React.FC<FetchProductsProviderProps> = ({ children }) => {
     const [state, dispatch] = useReducer(fetchProductReducer, initialState);
   
-    const fetchProducts = async (productId: string) => {
+    const fetchProducts = async () => {
       dispatch({ type: 'FETCH_START' });
       try {
         const productsRef = collection(db, 'Products');
@@ -170,6 +170,10 @@ export const useFetchProducts = (): ContextProps => {
         toast.error('Error fetching products data');
       }
     };
+
+    useEffect(() => {
+      fetchProducts();
+    },[]);
   
     return (
         <FetchProductsContext.Provider value={{ state, fetchProducts }}>

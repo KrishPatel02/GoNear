@@ -1,10 +1,13 @@
 "use client";
 
+import HomePage from "@/Components/HomePage";
+
 const Page = () => {
+  
   return (
     <>
-      <div className="h-screen flex items-center justify-center">
-        <h1 className="text-4xl font-bold">GoNear: Go Near By Shops</h1>
+      <div className="h-screen pt-10 bg-white flex items-center justify-center">
+        <HomePage />
       </div>
     </>
   );

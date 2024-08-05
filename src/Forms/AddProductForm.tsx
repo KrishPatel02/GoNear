@@ -15,11 +15,14 @@ import { useAddProduct } from "@/Context/ProductDataContext";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { auth } from "@/Firebase/FirebaseConfig"; 
+import { useRouter } from "next/navigation";
+
 
 const AddProductForm: React.FC = () => {
     const { state, addProduct, handleInputChange, handleFileChange } = useAddProduct();
     const { productData, loading } = state;
     const [sellerID, setSellerID] = useState<string | null>(null);
+    const router =  useRouter();
 
     useEffect(() => {
         const fetchSellerID = () => {
@@ -36,8 +39,12 @@ const AddProductForm: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (sellerID) {
-            await addProduct(sellerID); // Pass sellerID to the addProduct function
+            await addProduct(sellerID); 
+            setTimeout(() => {
+                router.push("/SellerDashboard/Products")
+            }, 1500);
         }
+
     };
 
     return (
@@ -75,10 +82,14 @@ const AddProductForm: React.FC = () => {
                             onChange={handleInputChange}
                             fullWidth
                             required
-                        >
+                        > 
                             <MenuItem value="Electronics">Electronics</MenuItem>
                             <MenuItem value="Clothing">Clothing</MenuItem>
                             <MenuItem value="Books">Books</MenuItem>
+                            <MenuItem value="Food">Food</MenuItem>
+                            <MenuItem value="HomeKitchen">Home & Kitchen</MenuItem>
+                            <MenuItem value="Toys">Toys</MenuItem>
+                            <MenuItem value="Sports">Sports</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>
