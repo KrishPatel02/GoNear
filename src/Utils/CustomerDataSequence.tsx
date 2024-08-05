@@ -4,7 +4,7 @@ const CustomerDataSequence: string[] = [
   "Email",
 
   "Phone",
-  
+
   "DateOfBirth",
 
   "Address",
@@ -17,26 +17,28 @@ const CustomerDataSequence: string[] = [
 
   "Country",
 ];
-export const SellerDataSequence: string[] = [ //Sequence to show the Data
-"FullName",
+export const SellerDataSequence: string[] = [
+  "FullName",
 
-"SellerEmail",
-"ShopName",
-"Phone",
+  "SellerEmail",
 
-"DateOfBirth",
+  "ShopName",
 
-"GSTNO",
+  "Phone",
 
-"ShopAddress",
+  "DateOfBirth",
 
-"PinCode",
+  "GSTNO",
 
-"City",
+  "ShopAddress",
 
-"State",
+  "PinCode",
 
-"Country",
+  "City",
+
+  "State",
+
+  "Country",
 ];
 
 export default CustomerDataSequence;

@@ -4,11 +4,11 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='mt-20 w-[45%] mx-auto'>
+    <main className=" col-span-4 row-span-4 w-full ">
         <AddProductProvider>
           <AddProductForm />
         </AddProductProvider>
-    </div>
+    </main>
   )
 }
 

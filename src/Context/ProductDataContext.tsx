@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import { Product } from '@/types/index';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '@/Firebase/FirebaseConfig';
-// import { useUserData } from '../Usercontext/UserDataContext';
 import { AddDataToFirestore } from '@/Utils/AddData';
 import { useRouter } from 'next/navigation';
 

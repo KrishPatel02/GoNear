@@ -1,12 +1,15 @@
-import React from 'react';
-import { Product } from '@/types/index';
-import Image from 'next/image';
-import Link from "next/link";
-import { CardBody, CardContainer, CardItem } from '@/UI/3DCard';
-
-interface ProductCardProps extends Product {
-  Page: 'home' | 'product';
-}
+import React from "react";
+import { Product } from "@/types/index";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import { usePathname } from "next/navigation";
+import { MdDelete } from "react-icons/md";
+import tailwindConfig from "../../tailwind.config";
+import PrimaryIconButton from "@/UI/PrimaryIconButton";
+import { FaEdit } from "react-icons/fa";
+import { Typography } from "@mui/material";
 
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -14,79 +17,76 @@ const ProductCard: React.FC<ProductCardProps> = ({
   description,
   category,
   price,
-  id,
   productImage,
   Page,
 }) => {
+  const pathname = usePathname();
+
+  const productDetails = [
+    { label: "Description", value: description },
+    { label: "category", value: category },
+    { label: "Price", value: `$${price}` },
+  ];
+
   return (
-    <CardContainer className="inter-var">
-    <CardBody className="bg-colorFour relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] w-72 h-auto rounded-xl p-4 border">
-      <CardItem
-        translateZ="50"
-        className="text-lg font-bold text-colorOne"
-      >
-        {productName}
-      </CardItem>
-      {Page === 'product' && (
-        <>
-          <CardItem
-            as="p"
-            translateZ="60"
-            className="text-neutral-500 text-sm mt-2 "
-          >
-            Category: {category}
-          </CardItem>
-          <CardItem
-            as="p"
-            translateZ="60"
-            className="text-neutral-500 underine text-sm mt-2 "
-          >
-            Price: ${price}
-          </CardItem>
-        </>
-      )}
-      <CardItem translateZ="100" className="w-full mt-4">
-        <Image
-          src={productImage}
-          height="500"
-          width="500"
-          className="h-40 w-full object-contain rounded-xl "
-          alt="thumbnail"
-        />
-      </CardItem>
-      <div className="flex justify-evenly gap-5 items-center mt-4">
-        {Page === 'home' ? (
-          <CardItem
-            translateZ={20}
-            as={Link}
-            href={`/SellerDashboard/Products/${id}`}
-            className="mx-auto py-2 px-20 rounded-xl bg-colorOne text-white w-full text-center text-xs font-normal "
-          >
-            View more →
-          </CardItem>
-        ) : (
-          <>
-            <CardItem
-              translateZ={20}
-              as={Link}
-              href=""
-              className=" py-2 rounded-xl text-xs w-full font-normal text-center mx-5 bg-colorOne text-white"
-            >
-              Buy now →
-            </CardItem>
-            <CardItem
-              translateZ={20}
-              as={Link}
-              href={`/SellerDashboard/Products/Edit/${id}`}
-              className=" py-2 rounded-xl bg-colorOne text-white w-full mx-1 text-center text-xs font-bold"
-            >
-              Edit
-            </CardItem>
-          </>
-        )}
-      </div>
-    </CardBody>
-  </CardContainer>
+    <Card
+      sx={{
+        width: 250,
+        height: 400,
+        border: "1px solid #e2e8f0",
+        boxShadow: "none",
+        transition: "transform 0.3s ease-in-out",
+        "&:hover": {
+          transform: "scale(1.02)",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        },
+      }}
+    >
+      <CardMedia
+        component="img"
+        sx={{
+          height: 225,
+          width: "100%",
+          objectFit: "cover",
+        }}
+        image={productImage}
+      />
+      <CardContent className="p-4">
+        <Typography
+          sx={{
+            fontWeight: "bold",
+            fontSize: "1.25rem",
+            color: tailwindConfig.theme.extend.colors.colorTwo,
+          }}
+          className="mb-1"
+        >
+          {productName}
+        </Typography>
+        {productDetails.map((detail, index) => (
+          <Typography key={index} sx={{ color: "#4b5563" }} className="text-md">
+            {detail.value}
+          </Typography>
+        ))}
+
+        {pathname === "/SellerDashboard/Products/ManageProducts" ? (
+          <CardActions className="p-4 flex justify-end">
+            <PrimaryIconButton
+              label="Edit"
+              icon={<FaEdit />}
+              color={tailwindConfig.theme.extend.colors.colorTwo}
+              sx={{ borderRadius: 4, padding: "6px 12px" }}
+            />
+            <PrimaryIconButton
+              label="Delete"
+              icon={<MdDelete />}
+              color="#ef4444"
+              sx={{ borderRadius: 4, padding: "6px 12px" }}
+            />
+          </CardActions>
+        ) : null}
+      </CardContent>
+    </Card>
+
   );
 };
 

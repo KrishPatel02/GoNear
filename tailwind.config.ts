@@ -12,11 +12,9 @@ const config: Config = {
         colorOne: "#e87d20",
         colorTwo: "#333333",
         colorThree: "#e87d2051",
-        colorFour: "#edf3f8", 
+        colorFour: "#f3f4f6",
       },
-      backgroundImage: {
-
-      },
+      backgroundImage: {},
     },
   },
   plugins: [],
