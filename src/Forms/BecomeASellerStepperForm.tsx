@@ -3,18 +3,19 @@ import React, { useState } from "react";
 import { Stepper, Step, StepLabel, TextField } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { v4 as uuidv4 } from "uuid";
 import { db, auth } from "@/Firebase/FirebaseConfig";
 import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { HiUser, HiMiniIdentification } from "react-icons/hi2";
 import { TiGlobe } from "react-icons/ti";
-import { PiCityBold, PiMapPinAreaBold } from "react-icons/pi";
-import { MdEmail, MdPin, MdOutlinePassword, MdStore } from "react-icons/md";
-import { FaMapLocationDot, FaSquarePhoneFlip } from "react-icons/fa6";
+import { PiCityBold } from "react-icons/pi";
+import { MdEmail, MdPin, MdOutlinePassword } from "react-icons/md";
+import { FaMapLocationDot, FaSquarePhoneFlip, FaShop } from "react-icons/fa6";
 import { ImLocation } from "react-icons/im";
 import PrimaryButton from "../UI/PrimaryButton";
-import { v4 as uuidv4 } from "uuid";
 import tailwindConfig from "../../tailwind.config";
+import Link from "next/link";
 
 const BecomeASellerStepperForm = () => {
   const steps = [
@@ -24,7 +25,7 @@ const BecomeASellerStepperForm = () => {
 
     "Address Details",
 
-    "Confirmation",
+    "Review",
   ];
 
   const [activeStep, setActiveStep] = useState(0);
@@ -137,7 +138,7 @@ const BecomeASellerStepperForm = () => {
       setSellerData({
         FullName: "",
 
-        SellerEmail: "",
+        SellerEmail: "", 
 
         Phone: "",
 
@@ -169,12 +170,16 @@ const BecomeASellerStepperForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-screen pt-20">
-      <div className="w-4/5 bg-white p-8 rounded-lg  border border-gray-300 shadow-sm">
-        <h1 className="text-colorTwo text-2xl font-bold text-center">
-          Become a Seller
+    <div className=" flex items-center">
+      <div className="flex flex-col gap-2 w-full ">
+        <h1 className="flex items-center justify-center w-full text-2xl font-bold text-colorTwo ">
+          <span className="mr-2">Want to</span>
+          <span className="flex items-center text-colorOne mr-2">
+            Become a Seller
+          </span>
+          <FaShop className={`${iconStepperClassName} text-colorOne`} />
         </h1>
-
+        <h6 className="text-center text-colorTwo">Fill out the form below</h6>
         <Stepper
           activeStep={activeStep}
           alternativeLabel
@@ -208,8 +213,8 @@ const BecomeASellerStepperForm = () => {
         </Stepper>
 
         {activeStep === 0 && (
-          <div>
-            <div className="flex items-center mb-4">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center ">
               <HiUser className={iconStepperClassName} />
 
               <TextField
@@ -224,7 +229,7 @@ const BecomeASellerStepperForm = () => {
               />
             </div>
 
-            <div className="flex items-center mb-4">
+            <div className="flex items-center">
               <MdEmail className={iconStepperClassName} />
 
               <TextField
@@ -239,7 +244,7 @@ const BecomeASellerStepperForm = () => {
               />
             </div>
 
-            <div className="flex items-center mb-4">
+            <div className="flex items-center">
               <MdOutlinePassword className={iconStepperClassName} />
 
               <TextField
@@ -255,7 +260,7 @@ const BecomeASellerStepperForm = () => {
               />
             </div>
 
-            <div className="flex items-center mb-4">
+            <div className="flex items-center ">
               <FaSquarePhoneFlip className={iconStepperClassName} />
 
               <TextField
@@ -273,9 +278,9 @@ const BecomeASellerStepperForm = () => {
         )}
 
         {activeStep === 1 && (
-          <div>
-            <div className="flex items-center mb-4">
-              <MdStore className={iconStepperClassName} />
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center">
+              <FaShop className={iconStepperClassName} />
 
               <TextField
                 fullWidth
@@ -289,7 +294,7 @@ const BecomeASellerStepperForm = () => {
               />
             </div>
 
-            <div className="flex items-center mb-4">
+            <div className="flex items-center ">
               <ImLocation className={iconStepperClassName} />
 
               <TextField
@@ -304,7 +309,7 @@ const BecomeASellerStepperForm = () => {
               />
             </div>
 
-            <div className="flex items-center mb-4">
+            <div className="flex items-center ">
               <HiMiniIdentification className={iconStepperClassName} />
 
               <TextField
@@ -322,8 +327,8 @@ const BecomeASellerStepperForm = () => {
         )}
 
         {activeStep === 2 && (
-          <div>
-            <div className="flex items-center mb-4">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center ">
               <PiCityBold className={iconStepperClassName} />
 
               <TextField
@@ -338,7 +343,7 @@ const BecomeASellerStepperForm = () => {
               />
             </div>
 
-            <div className="flex items-center mb-4">
+            <div className="flex items-center ">
               <FaMapLocationDot className={iconStepperClassName} />
 
               <TextField
@@ -353,7 +358,7 @@ const BecomeASellerStepperForm = () => {
               />
             </div>
 
-            <div className="flex items-center mb-4">
+            <div className="flex items-center ">
               <TiGlobe className={iconStepperClassName} />
 
               <TextField
@@ -368,7 +373,7 @@ const BecomeASellerStepperForm = () => {
               />
             </div>
 
-            <div className="flex items-center mb-4">
+            <div className="flex items-center ">
               <MdPin className={iconStepperClassName} />
 
               <TextField
@@ -386,48 +391,62 @@ const BecomeASellerStepperForm = () => {
         )}
 
         {activeStep === 3 && (
-          <div>
-            <h3 className="text-lg font-semibold mb-2">Confirmation</h3>
+          <div className="flex flex-col gap-5 mt-6">
+            <h3 className="text-lg font-semibold text-center">
+              Great! Please Review your Seller Profile Detail
+            </h3>
 
-            <ul className="list-disc pl-5">
-              <li>Full Name: {sellerData.FullName}</li>
+            <div className="flex justify-evenly">
+              <ul className=" flex flex-col space-y-6 ">
+                <li>Full Name: {sellerData.FullName}</li>
 
-              <li>Email: {sellerData.SellerEmail}</li>
+                <li>Email: {sellerData.SellerEmail}</li>
 
-              <li>Phone: {sellerData.Phone}</li>
+                <li>Phone: {sellerData.Phone}</li>
 
-              <li>City: {sellerData.City}</li>
+                <li>Shop Name: {sellerData.ShopName}</li>
 
-              <li>State: {sellerData.State}</li>
+                <li>Shop Address: {sellerData.ShopAddress}</li>
 
-              <li>Country: {sellerData.Country}</li>
+                <li>GST Number: {sellerData.GSTNO}</li>
+              </ul>
+              <ul className=" flex flex-col space-y-6 ">
+                <li>City: {sellerData.City}</li>
 
-              <li>Pin Code: {sellerData.PinCode}</li>
+                <li>State: {sellerData.State}</li>
 
-              <li>Shop Name: {sellerData.ShopName}</li>
+                <li>Country: {sellerData.Country}</li>
 
-              <li>Shop Address: {sellerData.ShopAddress}</li>
-
-              <li>GST Number: {sellerData.GSTNO}</li>
-            </ul>
+                <li>Pin Code: {sellerData.PinCode}</li>
+              </ul>
+            </div>
           </div>
         )}
 
         <div className="mt-4 flex justify-between">
-          <PrimaryButton
-            disabled={activeStep === 0}
-            onClickFunc={handleBack}
-            value="Back"
-          />
+          <div>
+            <Link
+              href="/Login/SellerLogin"
+              className="text-colorOne text-center"
+            >
+              Already have an Seller account? Login to Seller Account
+            </Link>
+          </div>
+          <div className="flex gap-5">
+            <PrimaryButton
+              disabled={activeStep === 0}
+              onClickFunc={handleBack}
+              value="Back"
+            />
 
-          <PrimaryButton
-            onClickFunc={
-              activeStep === steps.length - 1 ? handleSubmit : handleNext
-            }
-            value={activeStep === steps.length - 1 ? "Submit" : "Next"}
-          />
+            <PrimaryButton
+              onClickFunc={
+                activeStep === steps.length - 1 ? handleSubmit : handleNext
+              }
+              value={activeStep === steps.length - 1 ? "Submit" : "Next"}
+            />
+          </div>
         </div>
-
         <ToastContainer position="top-right" autoClose={5000} />
       </div>
     </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Product } from "@/types/index";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -10,7 +9,7 @@ import tailwindConfig from "../../tailwind.config";
 import PrimaryIconButton from "@/UI/PrimaryIconButton";
 import { FaEdit } from "react-icons/fa";
 import { Typography } from "@mui/material";
-
+import Image from "next/image";
 
 const ProductCard: React.FC<ProductCardProps> = ({
   productName,
@@ -51,14 +50,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
         }}
         image={productImage}
       />
-      <CardContent className="p-4">
+
+      <CardContent>
         <Typography
           sx={{
             fontWeight: "bold",
             fontSize: "1.25rem",
             color: tailwindConfig.theme.extend.colors.colorTwo,
           }}
-          className="mb-1"
+          className=""
         >
           {productName}
         </Typography>
@@ -86,7 +86,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         ) : null}
       </CardContent>
     </Card>
-
   );
 };
 

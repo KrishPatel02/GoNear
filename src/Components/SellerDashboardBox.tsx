@@ -20,11 +20,10 @@ const SellerDashboardBox = () => {
         return <>Loading...</>;
     }
 
-    // Determine if the user is a seller
     const user = seller || customer;
 
     const sdLinksClassName =
-        "flex items-center px-4 py-2 gap-2 transition-colors duration-200 border-b-2 border-slate-200";
+        "flex items-center px-4 py-2 gap-2 transition-colors duration-200 border-b-2";
 
     const unActivePathClassNameSD =
         "text-gray-600 hover:text-black hover:font-medium";

@@ -6,7 +6,8 @@ const page = () => {
     return (
         <div className="h-screen flex flex-col items-center justify-center gap-5">
             <h1 className="text-4xl font-bold">
-                <span className="text-colorOne">Welcome Back</span>
+                <span className="text-colorOne">Welcome Back!</span>
+                <span >{" "}Choose One</span>
             </h1>
 
             <Link href="Login/CustomerLogin">

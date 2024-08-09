@@ -11,9 +11,10 @@ import { FcGoogle } from "react-icons/fc";
 
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/Firebase/FirebaseConfig";
-import { Customer } from "@/types"; // Make sure to update your types file to include Customer
+import { Customer } from "@/types";
 import Link from "next/link";
 import PrimaryButton from "@/UI/PrimaryButton";
+import SecondaryButton from "@/UI/SecondayButton";
 
 const CustomerLoginForm = () => {
   const [email, setEmail] = useState("");
@@ -86,52 +87,53 @@ const CustomerLoginForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen ">
-      <div className="flex flex-col w-1/4 bg-white p-8 rounded gap-3 shadow-lg">
-        <h1 className="text-2xl font-bold text-center mb-4">Login</h1>
+    <>
+      <div className=" h-screen flex items-center justify-center">
+        <div className="w-96 p-6 bg-white rounded-lg shadow-md">
+          <div className=" flex flex-col items-center space-y-6">
+            <div className="text-2xl font-bold text-center ">
+              Login as a <span className="text-colorOne">Customer</span>
+            </div>
 
-        <div className="mb-4">
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            className="w-full border border-gray-300 p-2 rounded focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
-          />
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+            />
+
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+            />
+
+            <PrimaryButton
+              value="Login with Email"
+              className="w-full "
+              onClickFunc={handleEmailLogin}
+            />
+
+            <SecondaryButton
+              value="Login with Google"
+              icon={<FcGoogle className="h-5 w-5 mr-2" />}
+              className="w-full "
+              onClickFunc={handleGoogleLogin}
+            />
+
+            <Link href="/Signup" className="text-blue-500 underline">
+              Not A User? SignUp
+            </Link>
+          </div>
+          <ToastContainer />
         </div>
-
-        <div className="mb-6">
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className="w-full border border-gray-300 p-2 rounded focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
-          />
-        </div>
-
-        <PrimaryButton
-          value="Login with Email"
-          className="w-full "
-          onClickFunc={handleEmailLogin}
-        />
-        <PrimaryButton
-          value="Login with Google"
-          logo={<FcGoogle className="h-5 w-5 cursor-pointer" />}
-          className="w-full flex justify-center items-center "
-          onClickFunc={handleGoogleLogin}
-        />
-        <Link
-          href={"/Signup"}
-          className="w-full  underline pt-2  h-fit text-colorTwo"
-        >
-          Not A User? SignUp
-        </Link>
-        <ToastContainer />
       </div>
-    </div>
+    </>
   );
 };
 

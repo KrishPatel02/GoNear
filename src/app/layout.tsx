@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import GlobalLayout from "@/Components/GlobalLayout";
 import Navbar from "@/Components/Navbar";
 import { UserDataProvider } from "@/Context/UserDataContext";
 import { FetchProductsProvider } from "@/Context/ProductDataContext";
@@ -20,17 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} overflow-x-hidden scroll-smooth `}>
-      <FetchProductsProvider>
-
+    <html lang="en" className="h-full bg-white">
+      <body className={`${inter.className} h-full overflow-x-hidden scroll-smooth `}>
+        <FetchProductsProvider>
           <UserDataProvider>
-            <GlobalLayout>
-              <Navbar />
-              {children}
-            </GlobalLayout>
+            <Navbar />
+            {children}
           </UserDataProvider>
-      </FetchProductsProvider>
+        </FetchProductsProvider>
       </body>
     </html>
   );
