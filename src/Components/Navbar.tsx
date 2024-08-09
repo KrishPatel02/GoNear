@@ -5,15 +5,22 @@ import PrimaryButton from "../UI/PrimaryButton";
 import { usePathname } from "next/navigation";
 import { useUserData } from "@/Context/UserDataContext";
 import { Customer, Seller } from "@/types";
-import { CircularProgress, Typography, TextField, Button } from '@mui/material';
-import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from '@headlessui/react';
-import { Product } from '@/types';
-import { useRouter } from 'next/navigation';
+import { CircularProgress, Typography, TextField, Button } from "@mui/material";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxOption,
+  ComboboxOptions,
+} from "@headlessui/react";
+import { Product } from "@/types";
+import { useRouter } from "next/navigation";
 import { FiSearch } from "react-icons/fi";
 import CustomerNavigation from "@/Navigations/CustomerNavigation";
 import SellerNavigation from "@/Navigations/SellerNavigation";
 
 import { useFetchProducts } from "@/Context/ProductDataContext";
+import SecondaryButton from "@/UI/SecondayButton";
+import PrimaryIconButton from "@/UI/PrimaryIconButton";
 
 const NavBar = () => {
   const pathname = usePathname();
@@ -25,9 +32,9 @@ const NavBar = () => {
   const { state: userState } = useUserData();
   const { state: productState, fetchProducts } = useFetchProducts();
   const { products, loading, error } = productState;
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null)
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -52,14 +59,13 @@ const NavBar = () => {
     setFalse();
   };
 
-  // console.log("loggedInUser", loggedInUser);
-
   useEffect(() => {
     if (products) {
       const lowercasedTerm = searchTerm.toLowerCase();
-      const filtered = products.filter(product =>
-        product.productName.toLowerCase().includes(lowercasedTerm) ||
-        product.category.toLowerCase().includes(lowercasedTerm)
+      const filtered = products.filter(
+        (product) =>
+          product.productName.toLowerCase().includes(lowercasedTerm) ||
+          product.category.toLowerCase().includes(lowercasedTerm)
       );
       setFilteredProducts(filtered);
     }
@@ -68,13 +74,16 @@ const NavBar = () => {
   useEffect(() => {
     if (selectedOption) {
       router.push(`/Search?term=${encodeURIComponent(selectedOption)}`);
-      setSearchTerm('');
+      setSearchTerm("");
     }
   }, [selectedOption, router]);
 
-  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  }, []);
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchTerm(e.target.value);
+    },
+    []
+  );
 
   const handleSearch = useCallback(() => {
     if (searchTerm) {
@@ -82,16 +91,20 @@ const NavBar = () => {
     }
   }, [router, searchTerm]);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  }, [handleSearch]);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        handleSearch();
+      }
+    },
+    [handleSearch]
+  );
 
-  const categoriesAndNames = [...new Set(products.flatMap(product => [
-    product.productName,
-    product.category
-  ]))];
+  const categoriesAndNames = [
+    ...new Set(
+      products.flatMap((product) => [product.productName, product.category])
+    ),
+  ];
 
   if (loading) {
     return <CircularProgress />;
@@ -100,7 +113,6 @@ const NavBar = () => {
   if (error) {
     return <Typography color="error">{error}</Typography>;
   }
-
 
   const navBarLinksClassName =
     "flex items-center px-4 py-2 gap-2 transition-colors duration-200 ";
@@ -117,7 +129,7 @@ const NavBar = () => {
     console.log(userState.error);
   }
   return (
-    <nav className=" w-screen p-3 bg-white flex justify-evenly items-center text-center border-b  fixed gap-2 z-50">
+    <nav className=" w-screen p-3 bg-white flex justify-evenly items-center text-center border-b fixed gap-2 z-50">
       <Link
         onClick={setFalse}
         href="/"
@@ -127,25 +139,31 @@ const NavBar = () => {
         Near
       </Link>
 
-      <div className="flex justify-evenly w-96 mx-auto items-center">
-        <Combobox value={selectedOption} onChange={setSelectedOption} onClose={() => setSearchTerm('')}>
+      <div className="relative w-1/2 flex items-center rounded bg-colorFour  ">
+        <Combobox
+          value={selectedOption}
+          onChange={setSelectedOption}
+          onClose={() => setSearchTerm("")}
+        >
           <ComboboxInput
             aria-label="Search"
-            displayValue={(option) => option ?? ''}
+            displayValue={(option) => option ?? ""}
             onChange={handleSearchChange}
             onKeyDown={handleKeyDown}
             placeholder="Search by Product Name or Category..."
-            className="w-full px-4 py-2 border rounded-md bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
+            className="w-full py-2 px-4 bg-colorFour rounded-lg focus:outline-none active:rounded-t"
           />
           {searchTerm && (
-            <ComboboxOptions className="absolute top-14 z-[9999999] mt-1 w-96 max-h-32 overflow-y-scroll hide-scrollbar bg-white border border-gray-300 rounded-md shadow-lg">
+            <ComboboxOptions className="absolute top-10 z-100 w-full overflow-y-scroll hide-scrollbar bg-colorFour rounded-b">
               {categoriesAndNames
-                .filter(option => option.toLowerCase().includes(searchTerm.toLowerCase()))
+                .filter((option) =>
+                  option.toLowerCase().includes(searchTerm.toLowerCase())
+                )
                 .map((option, index) => (
                   <ComboboxOption
                     key={index}
                     value={option}
-                    className="data-[focus]:bg-colorOne rounded-md data-[focus]:text-colorFour px-4 py-2 cursor-pointer"
+                    className="data-[focus]:bg-white text-left data-[focus]:text-colorTwo px-4 py-2 cursor-pointer data-[focus]:border-l-4 border-colorOne"
                   >
                     {option}
                   </ComboboxOption>
@@ -182,7 +200,7 @@ const NavBar = () => {
             />
 
             {menuOpen && (
-              <div className="absolute top-10 right-0 mt-2 w-60 bg-white rounded shadow-md  border z-100">
+              <div className="absolute top-10 right-0 mt-2 w-60 bg-white rounded shadow-md border z-100">
                 {userState.customer &&
                   CustomerNavigation.map((item) => {
                     return (
@@ -233,9 +251,14 @@ const NavBar = () => {
         )}
 
         {!loggedInUser && (
-          <Link href="/Login">
-            <PrimaryButton value="Login" logo={``} />
-          </Link>
+          <div className="flex gap-5">
+            <Link href="/Login">
+              <SecondaryButton value="Login" logo={``} />
+            </Link>
+            <Link href="/Signup">
+              <SecondaryButton value="SignUp" logo={``} />
+            </Link>
+          </div>
         )}
       </div>
     </nav>

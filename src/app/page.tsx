@@ -6,7 +6,7 @@ const Page = () => {
   
   return (
     <>
-      <div className="h-screen pt-10 bg-white flex items-center justify-center">
+      <div className="h-screen pt-20 bg-white flex items-center justify-center">
         <HomePage />
       </div>
     </>

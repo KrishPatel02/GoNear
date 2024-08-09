@@ -10,7 +10,6 @@ const HomePage = () => {
   const { state } = useFetchProducts();
   const { loading, error } = state;
   
-  // console.log("state", state)
 
   if (loading) {
     return <CircularProgress />;
@@ -22,8 +21,8 @@ const HomePage = () => {
 
 
   return (
-    <div className=" mt-16 py-5 flex flex-col items-center h-full w-full">
-      <div className="flex flex-wrap px-10 gap-16 h-full justify-center items-center hide-scrollbar">
+    <div className=" py-5 flex flex-col items-center h-full w-full">
+      <div className="flex flex-wrap px-5 gap-5 h-full justify-center items-center hide-scrollbar">
         {state.products?.length > 0 ? (
             state.products?.map(product => (
               <ProductCard key={product.id} {...product} Page="home" />

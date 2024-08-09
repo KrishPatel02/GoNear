@@ -1,13 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+} from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FcGoogle } from "react-icons/fc";
 
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "@/Firebase/FirebaseConfig";
-import { Seller } from "@/types"; // Make sure to update your types file to include Seller
+import { Seller } from "@/types"; 
 import PrimaryButton from "../UI/PrimaryButton";
 import Link from "next/link";
 
@@ -17,7 +21,11 @@ const SellerLoginForm = () => {
 
     const handleEmailLogin = async () => {
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
             const user = userCredential.user;
 
             const docRef = doc(db, "SellerData", user.uid);
@@ -38,11 +46,13 @@ const SellerLoginForm = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
-            <div className="bg-white p-8 rounded gap-1 flex flex-col shadow-lg w-96">
-                <h1 className="text-2xl font-bold text-center mb-4">Login as a Seller</h1>
+        <div className=" h-screen flex items-center justify-center">
+            <div className="w-96 p-6 bg-white rounded-lg shadow-md">
+                <div className=" flex flex-col items-center space-y-6">
+                    <div className="text-2xl font-bold text-center ">
+                        Login as a <span className="text-colorOne">Seller</span>
+                    </div>
 
-                <div className="mb-4">
                     <input
                         type="email"
                         id="email"
@@ -51,9 +61,7 @@ const SellerLoginForm = () => {
                         placeholder="Email"
                         className="w-full border border-gray-300 p-2 rounded focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
                     />
-                </div>
 
-                <div className="mb-6">
                     <input
                         type="password"
                         id="password"
@@ -62,21 +70,21 @@ const SellerLoginForm = () => {
                         placeholder="Password"
                         className="w-full border border-gray-300 p-2 rounded focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
                     />
+
+                    <PrimaryButton
+                        value="Login with Email"
+                        className="w-full"
+                        onClickFunc={handleEmailLogin}
+                    />
+
+                    <Link
+                        href={"/BecomeSeller"}
+                        className="w-full underline pt-2  h-fit text-colorTwo"
+                    >
+                        Not a Seller? Become One
+                    </Link>
+                    <ToastContainer />
                 </div>
-
-                <PrimaryButton
-                    value="Login with Email"
-                    className="w-full"
-                    onClickFunc={handleEmailLogin}
-                />
-
-                <Link
-                    href={"/BecomeSeller"}
-                    className="w-full underline pt-2  h-fit text-colorTwo"
-                >
-                    Not A Seler? Become One
-                </Link>
-                <ToastContainer />
             </div>
         </div>
     );

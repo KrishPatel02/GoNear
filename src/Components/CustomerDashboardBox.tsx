@@ -23,7 +23,7 @@ const page = () => {
     const user = seller || customer;
 
     const cbLinksClassName =
-        "flex items-center px-4 py-2 gap-2 transition-colors duration-200 border-b border-slate-200";
+        "flex items-center px-4 py-2 gap-2 transition-colors duration-200 border-b-2";
 
     const unActivePathClassNameCB =
         "text-gray-600 hover:text-black hover:font-medium";
